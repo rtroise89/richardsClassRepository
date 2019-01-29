@@ -1,5 +1,5 @@
 ---
-title: "Journal"
+title: "R-Basics"
 output:
   html_document:
     toc: true
@@ -14,16 +14,9 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
-IMPORTANT: You can delete everything in here and start fresh. You might want to start by not deleting anything above this line until you know what that stuff is doing.
 
+# Problem 1
 
-This is an .Rmd file. It is plain text with special features. Any time you write just like this, it will be compiled to normal text in the website. If you put a \# in front of your text, it will create a top level-header.
-
-# My first post
-
-Problems
-
-1+1
 
 ```{r}
 1+1
@@ -32,11 +25,48 @@ Problems
 
 # Problem 2
 
-r eval=FALSE (will not run code but display it)
+helpful tip - "r eval=FALSE" in "{r}"(will not run code but display it)
 
-```{r, eval = FALSE}
+```{r}
 rich <- 1
 rich
 
+```
+
+# Problem 3
+
+
+```{r}
+array1 <- 1
+for(i in 2:100){
+  array1 <-c(array1, i)
+}
+array1
+```
+*returns a set of numbers (all real numbers)
+
+**alternatively**
+```{r}
+array2 <- seq(1,100)
+array2
+```
+*returns a set of integers
+
+# Problem 4
+
+```{r}
+array3 <- sum(seq(1,100))
+array3
+```
+
+# Problem 5 
+
+```{r}
+mySum<- function (x,y) {
+  sumVector <- sum(seq(x,y))
+  return(sumVector)
+}
+
+mySum(1,5)
 ```
 
