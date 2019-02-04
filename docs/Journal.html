@@ -465,6 +465,7 @@ array4</code></pre>
 ## [24] 47 49 51 53 55 57 59 61 63 65 67 69 71 73 75 77 79 81 83 85 87 89 91
 ## [47] 93 95 97 99</code></pre>
 <p><strong>alternatively</strong></p>
+<p>for loop can iterate differently (1:100) or seq(2,100,2) or using array of strings</p>
 <pre class="r"><code>array5 &lt;- c()
 
 for(i in 1:100){
@@ -479,20 +480,40 @@ array5</code></pre>
 </div>
 <div id="problem-7" class="section level1">
 <h1>Problem 7</h1>
-<p>maybe use a list? and take advantage of NULL to remove unwanted indices</p>
-<pre class="r"><code>i &lt;- 3
-array6 &lt;- c(2)
-repeat{
-  array6 &lt;- c(array6, i)
-  i &lt;- i + 2
-    if(i &gt;= 100){
-      break;
-    }
+<p>Use a vector and take advantage of NA and NULL to remove unwanted indices (non prime numbers)</p>
+<pre class="r"><code>#making a sequence of numbers
+vec_num &lt;- c(2:1000)
+
+#search the vector to tag numbers divisible by 2, 3, 5, and 7
+j &lt;- 1
+while(j &lt;= 998){
+  vec_num[2+j] &lt;- NA
+  j &lt;- j+2
 }
-array6</code></pre>
-<pre><code>##  [1]  2  3  5  7  9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41 43 45
-## [24] 47 49 51 53 55 57 59 61 63 65 67 69 71 73 75 77 79 81 83 85 87 89 91
-## [47] 93 95 97 99</code></pre>
+
+k &lt;- 2
+while(k &lt;= 997){
+  vec_num[3+k] &lt;- NA
+  k &lt;- k+3
+}
+
+m &lt;- 4
+while(m &lt;= 995){
+  vec_num[5+m] &lt;- NA
+  m &lt;- m+5
+}
+
+n &lt;- 6
+while(n &lt;= 993){
+  vec_num[7+n] &lt;- NA
+  n &lt;- n+7
+}
+
+#for(a in 1:length(vec_num)){
+#  if(is.na(vec_num[a])){
+#    vec_num[a] &lt;- NULL
+#  }
+#}</code></pre>
 </div>
 
 

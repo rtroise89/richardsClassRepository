@@ -79,6 +79,7 @@ array4
 
 **alternatively**
 
+for loop can iterate differently (1:100) or seq(2,100,2) or using array of strings
 ```{r}
 array5 <- c()
 
@@ -93,17 +94,40 @@ array5
 
 #Problem 7
 
-maybe use a list? and take advantage of NULL to remove unwanted indices
+Use a vector and take advantage of NA and NULL to remove unwanted indices (non prime numbers)
 ```{r}
-i <- 3
-array6 <- c(2)
-repeat{
-  array6 <- c(array6, i)
-  i <- i + 2
-    if(i >= 100){
-      break;
-    }
+#making a sequence of numbers
+vec_num <- c(2:1000)
+
+#search the vector to tag numbers divisible by 2, 3, 5, and 7
+j <- 1
+while(j <= 998){
+  vec_num[2+j] <- NA
+  j <- j+2
 }
-array6
- 
+
+k <- 2
+while(k <= 997){
+  vec_num[3+k] <- NA
+  k <- k+3
+}
+
+m <- 4
+while(m <= 995){
+  vec_num[5+m] <- NA
+  m <- m+5
+}
+
+n <- 6
+while(n <= 993){
+  vec_num[7+n] <- NA
+  n <- n+7
+}
+
+#for(a in 1:length(vec_num)){
+#  if(is.na(vec_num[a])){
+#    vec_num[a] <- NULL
+#  }
+#}
+
 ```
