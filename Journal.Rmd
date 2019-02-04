@@ -70,3 +70,39 @@ mySum<- function (x,y) {
 mySum(1,5)
 ```
 
+#Problem 6
+
+```{r}
+array4 <- seq(1,100,2)
+array4
+```
+
+**alternatively**
+
+```{r}
+array5 <- c()
+
+for(i in 1:100){
+  if(i%%2 > 0){
+    array5<-c(array5,i)
+  }
+}
+array5
+
+```
+
+#Problem 7
+
+```{r}
+i <- 3
+array6 <- c(2)
+repeat{
+  array6 <- c(array6, i)
+  i <- i + 2
+    if(i >= 100){
+      break;
+    }
+}
+array6
+ 
+```
