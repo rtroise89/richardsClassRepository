@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -264,6 +267,101 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -307,28 +405,84 @@ $(document).ready(function () {
 </div>
 
 
-<div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
-<pre class="r"><code>summary(cars)</code></pre>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
+<p><em>Assignment #2 - Functions</em></p>
+<div id="help" class="section level1">
+<h1>help()</h1>
+<p>*the help function outputs technical information about an R-topic and describes how to use such topic</p>
+<pre class="r"><code>  help(list)</code></pre>
 </div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="Definitions_files/figure-html/pressure-1.png" width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<div id="topic" class="section level1">
+<h1>?topic</h1>
+<p>*same as the help function</p>
+<pre class="r"><code>  ?list</code></pre>
+</div>
+<div id="ls" class="section level1">
+<h1>ls()</h1>
+<p>*outputs a vector of the names of all current objects created in the global enviornment</p>
+<pre class="r"><code>  ls()</code></pre>
+<pre><code>## character(0)</code></pre>
+</div>
+<div id="dir" class="section level1">
+<h1>dir()</h1>
+<p>*outputs a vector of the names of all R-related files inside project folder</p>
+<pre class="r"><code>  dir_array &lt;-dir()
+  dir_array</code></pre>
+<pre><code>##  [1] &quot;_site.yml&quot;               &quot;abc.rda&quot;                
+##  [3] &quot;Definitions.Rmd&quot;         &quot;Definitions_cache&quot;      
+##  [5] &quot;docs&quot;                    &quot;images&quot;                 
+##  [7] &quot;index.Rmd&quot;               &quot;LabJournalWebsite.Rproj&quot;
+##  [9] &quot;Links.Rmd&quot;               &quot;R_Basics.Rmd&quot;           
+## [11] &quot;R_Basics_cache&quot;          &quot;README.md&quot;</code></pre>
+</div>
+<div id="list.files" class="section level1">
+<h1>list.files()</h1>
+<p>*output is the same as dir()</p>
+<pre class="r"><code>  list.files()</code></pre>
+<pre><code>##  [1] &quot;_site.yml&quot;               &quot;Definitions.Rmd&quot;        
+##  [3] &quot;Definitions_cache&quot;       &quot;docs&quot;                   
+##  [5] &quot;images&quot;                  &quot;index.Rmd&quot;              
+##  [7] &quot;LabJournalWebsite.Rproj&quot; &quot;Links.Rmd&quot;              
+##  [9] &quot;R_Basics.Rmd&quot;            &quot;R_Basics_cache&quot;         
+## [11] &quot;README.md&quot;</code></pre>
+</div>
+<div id="save" class="section level1">
+<h1>save()</h1>
+<p>*saves an R-object from the workspace to a file specified by user for R to understand</p>
+<pre class="r"><code>  array1 &lt;- c(1,2,3)
+  save(array1, file = &quot;abc.rda&quot;)</code></pre>
+</div>
+<div id="load" class="section level1">
+<h1>load()</h1>
+<p>*loads a previously saved R-object file into the workspace</p>
+<pre class="r"><code>  load(&quot;abc.rda&quot;)</code></pre>
+</div>
+<div id="data" class="section level1">
+<h1>data()</h1>
+<p>*displays all available data sets preloaded into R-studio as a list object</p>
+<pre class="r"><code>  data_array &lt;- data()
+  data_array[[3]][97,]</code></pre>
+<pre><code>##                              Package                              LibPath 
+##                           &quot;datasets&quot; &quot;C:/Program Files/R/R-3.5.0/library&quot; 
+##                                 Item                                Title 
+##                           &quot;sunspots&quot; &quot;Monthly Sunspot Numbers, 1749-1983&quot;</code></pre>
+</div>
+<div id="library" class="section level1">
+<h1>library()</h1>
+<p>*displays all available R-packages to add functionality as a list object</p>
+<pre class="r"><code>  library_array &lt;- library()
+  library_array[[2]][2,]</code></pre>
+<pre><code>##                                                   Package 
+##                                               &quot;backports&quot; 
+##                                                   LibPath 
+##           &quot;C:/Users/RichardT/Documents/R/win-library/3.5&quot; 
+##                                                     Title 
+## &quot;Reimplementations of Functions Introduced Since R-3.0.0&quot;</code></pre>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 

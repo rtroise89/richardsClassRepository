@@ -1,28 +1,84 @@
 ---
 title: "Definitions"
-output: html_document
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
-## R Markdown
+*Assignment #2 - Functions*
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+#help()
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+*the help function outputs technical information about an R-topic and describes how to use such topic
+```{r}
+  help(list)
 ```
 
-## Including Plots
+#?topic
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+*same as the help function
+```{r}
+  ?list
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+#ls()
+
+*outputs a vector of the names of all current objects created in the global enviornment
+```{r}
+  ls()
+```
+
+#dir()
+
+*outputs a vector of the names of all R-related files inside project folder
+```{r}
+  dir_array <-dir()
+  dir_array
+```
+
+#list.files()
+
+*output is the same as dir()
+```{r}
+  list.files()
+```
+
+#save()
+*saves an R-object from the workspace to a file specified by user for R to understand
+```{r}
+  array1 <- c(1,2,3)
+  save(array1, file = "abc.rda")
+```
+
+#load()
+
+*loads a previously saved R-object file into the workspace
+```{r}
+  load("abc.rda")
+```
+
+#data()
+
+*displays all available data sets preloaded into R-studio as a list object
+```{r}
+  data_array <- data()
+  data_array[[3]][97,]
+```
+
+#library()
+
+*displays all available R-packages to add functionality as a list object
+```{r}
+  library_array <- library()
+  library_array[[2]][2,]
+```
+
