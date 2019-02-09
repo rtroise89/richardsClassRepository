@@ -478,6 +478,97 @@ div.tocify {
 ##                                                     Title 
 ## &quot;Reimplementations of Functions Introduced Since R-3.0.0&quot;</code></pre>
 </div>
+<div id="read.table" class="section level1">
+<h1>read.table()</h1>
+<p>*opens the file abc.txt in the working directory and saves columns as vectors using a default column name “V”</p>
+<pre class="r"><code>  table1 &lt;- read.table(&quot;abc.txt&quot;)
+  table1$V1</code></pre>
+<pre><code>## [1] appples bananas oranges grapes 
+## Levels: appples bananas grapes oranges</code></pre>
+</div>
+<div id="read.csv" class="section level1">
+<h1>read.csv()</h1>
+<p>*opens the file abc.csv in the working directory and saves columns as vectors, preserving column names defined by user in csv file.</p>
+<pre class="r"><code>  table2 &lt;- read.csv(&quot;abc.csv&quot;)
+  table2$Fruits</code></pre>
+<pre><code>## [1] apples  bananas oranges grapes 
+## Levels: apples bananas grapes oranges</code></pre>
+</div>
+<div id="scan" class="section level1">
+<h1>scan()</h1>
+<p>*can open a file filled with real numbers or receive input from keyboard if file equals “”. Output is a vector of real numbers</p>
+<pre class="r"><code>  num_scan &lt;- scan(&quot;abc2.txt&quot;)
+  num_scan</code></pre>
+<pre><code>## [1]    1    2   34 1234</code></pre>
+<pre class="r"><code>  num_scan[3]</code></pre>
+<pre><code>## [1] 34</code></pre>
+</div>
+<div id="print" class="section level1">
+<h1>print()</h1>
+<p>*outputs a previously defined object, a single string, or the first number of a vector of numbers. Coerces all items to strings if characters are found.</p>
+<pre class="r"><code>  sample_num &lt;- c(1,2,3,4,5)
+  print(sample_num)</code></pre>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<pre class="r"><code>  print(table2$Fruits)</code></pre>
+<pre><code>## [1] apples  bananas oranges grapes 
+## Levels: apples bananas grapes oranges</code></pre>
+<pre class="r"><code>  print(&quot;hello world&quot;)</code></pre>
+<pre><code>## [1] &quot;hello world&quot;</code></pre>
+<pre class="r"><code>  print(1,2,3)</code></pre>
+<pre><code>## [1] 1</code></pre>
+</div>
+<div id="cat" class="section level1">
+<h1>cat()</h1>
+<p>*similar to print() and c() by outputing all items to a single line, whether items are all numbers, all strings, or combination. Assinging cat() to an object results in a NULL set.</p>
+<pre class="r"><code>  print(c(1,2,3,&quot;hello world&quot;))</code></pre>
+<pre><code>## [1] &quot;1&quot;           &quot;2&quot;           &quot;3&quot;           &quot;hello world&quot;</code></pre>
+<pre class="r"><code>  sample_cat &lt;- cat(1,2,3, &quot;hello world&quot;)</code></pre>
+<pre><code>## 1 2 3 hello world</code></pre>
+<pre class="r"><code>  sample_cat</code></pre>
+<pre><code>## NULL</code></pre>
+</div>
+<div id="write.table" class="section level1">
+<h1>write.table()</h1>
+<p>*outputs a vector object to a file designated by user</p>
+<pre class="r"><code>  write.table(c(1,2,3,4,5,6), &quot;abc3.txt&quot;)</code></pre>
+</div>
+<div id="c" class="section level1">
+<h1>c()</h1>
+<p>*Combines items into a vector. Coerces all items to strings if characters are found.</p>
+<pre class="r"><code>  array_samp &lt;- c(1,2,3,4,5,6)
+  array_samp</code></pre>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+</div>
+<div id="fromto" class="section level1">
+<h1>from:to</h1>
+<p>*Outputs the sequence of numbers from one number to another number and increments by 1. Numbers can be in ascending or descending order, and negative</p>
+<pre class="r"><code>  1:3</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<pre class="r"><code>  3:1</code></pre>
+<pre><code>## [1] 3 2 1</code></pre>
+<pre class="r"><code>  -1:-3</code></pre>
+<pre><code>## [1] -1 -2 -3</code></pre>
+<pre class="r"><code>  1.3:1.5</code></pre>
+<pre><code>## [1] 1.3</code></pre>
+</div>
+<div id="seq" class="section level1">
+<h1>seq()</h1>
+<p>*Similar to from:to, with the option of incrementing or decremeting by numbers other than 1. Function is sign-sensitive.</p>
+<pre class="r"><code>  seq(1,3)</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<pre class="r"><code>  seq(10,1,-2)</code></pre>
+<pre><code>## [1] 10  8  6  4  2</code></pre>
+</div>
+<div id="rep" class="section level1">
+<h1>rep()</h1>
+<p>*Outputs a single number, string, or vector with no other arguments. If second argument is a number, item repeats for x number of times.</p>
+<pre class="r"><code>  rep(1)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>  rep(1,3)</code></pre>
+<pre><code>## [1] 1 1 1</code></pre>
+<pre class="r"><code>  rep(&quot;hello world&quot;, 4)</code></pre>
+<pre><code>## [1] &quot;hello world&quot; &quot;hello world&quot; &quot;hello world&quot; &quot;hello world&quot;</code></pre>
+</div>
 
 
 
