@@ -175,7 +175,7 @@ column names defined by user in csv file.
 
 #data.frame()
 
-*Outputs a matrix of values depending on the format of the input. Ex: If we simply add numbers seperated by comma, the matrix will output one row of x columns. Another is to assign sets of numbers to tags which forces those sets to rows.
+*Outputs a matrix of values depending on the format of the input. Ex: If we simply add numbers seperated by comma, the matrix will output one row of x columns. Another is to assign sets of numbers to tags which forces those sets to columns.
 ```{r}
   data.frame(1,2,3,4,5,6)
   data.frame(x = c(1,2,3), y = c(3,6,9), z = c(10,20,30))
