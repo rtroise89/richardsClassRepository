@@ -88,7 +88,7 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 a default column name "V"
 ```{r}
   table1 <- read.table("abc.txt")
-  table1$V1
+  table1
 ```
 
 #read.csv()
@@ -133,7 +133,9 @@ column names defined by user in csv file.
 
 *outputs a vector object to a file designated by user
 ```{r}
-  write.table(c(1,2,3,4,5,6), "abc3.txt")
+  table3 <- write.table(c(1,2,3,4,5,6), "abc3.txt")
+  table3 <- read.table("abc3.txt")
+  table3
 ```
 
 #c()
@@ -173,4 +175,9 @@ column names defined by user in csv file.
 
 #data.frame()
 
-*Outputs a matrix of values depending on the format of the input.One way is to simply add numbers seperated by commas ()
+*Outputs a matrix of values depending on the format of the input. Ex: If we simply add numbers seperated by comma, the matrix will output one row of x columns. Another is to assign sets of numbers to tags which forces the sets to rows.
+```{r}
+  data.frame(1,2,3,4,5,6)
+  data.frame(x = c(1,2,3), y = c(3,6,9), z = c(10,20,30))
+```
+

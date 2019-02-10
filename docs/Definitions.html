@@ -482,9 +482,13 @@ div.tocify {
 <h1>read.table()</h1>
 <p>*opens the file abc.txt in the working directory and saves columns as vectors using a default column name “V”</p>
 <pre class="r"><code>  table1 &lt;- read.table(&quot;abc.txt&quot;)
-  table1$V1</code></pre>
-<pre><code>## [1] appples bananas oranges grapes 
-## Levels: appples bananas grapes oranges</code></pre>
+  table1</code></pre>
+<pre><code>##        V1
+## 1  Fruits
+## 2 appples
+## 3 bananas
+## 4 oranges
+## 5  grapes</code></pre>
 </div>
 <div id="read.csv" class="section level1">
 <h1>read.csv()</h1>
@@ -530,7 +534,16 @@ div.tocify {
 <div id="write.table" class="section level1">
 <h1>write.table()</h1>
 <p>*outputs a vector object to a file designated by user</p>
-<pre class="r"><code>  write.table(c(1,2,3,4,5,6), &quot;abc3.txt&quot;)</code></pre>
+<pre class="r"><code>  table3 &lt;- write.table(c(1,2,3,4,5,6), &quot;abc3.txt&quot;)
+  table3 &lt;- read.table(&quot;abc3.txt&quot;)
+  table3</code></pre>
+<pre><code>##   x
+## 1 1
+## 2 2
+## 3 3
+## 4 4
+## 5 5
+## 6 6</code></pre>
 </div>
 <div id="c" class="section level1">
 <h1>c()</h1>
@@ -568,6 +581,18 @@ div.tocify {
 <pre><code>## [1] 1 1 1</code></pre>
 <pre class="r"><code>  rep(&quot;hello world&quot;, 4)</code></pre>
 <pre><code>## [1] &quot;hello world&quot; &quot;hello world&quot; &quot;hello world&quot; &quot;hello world&quot;</code></pre>
+</div>
+<div id="data.frame" class="section level1">
+<h1>data.frame()</h1>
+<p>*Outputs a matrix of values depending on the format of the input. Ex: If we simply add numbers seperated by comma, the matrix will output one row of x columns. Another is to assign sets of numbers to tags which forces the sets to rows.</p>
+<pre class="r"><code>  data.frame(1,2,3,4,5,6)</code></pre>
+<pre><code>##   X1 X2 X3 X4 X5 X6
+## 1  1  2  3  4  5  6</code></pre>
+<pre class="r"><code>  data.frame(x = c(1,2,3), y = c(3,6,9), z = c(10,20,30))</code></pre>
+<pre><code>##   x y  z
+## 1 1 3 10
+## 2 2 6 20
+## 3 3 9 30</code></pre>
 </div>
 
 
