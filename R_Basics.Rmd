@@ -156,20 +156,34 @@ newvec_num
 # Problem 10
 
 ```{r}
-  aa <- c(10,20,30,40,50,50)
+  aa <- c(10,10,20,30,40,50)
+
   mean_of_X <- function(x) {
     return (sum(x)/length(x))
   }
   
   mean_of_X(aa)
   
-#  mode_of_X <- function(x) {
-#    for(i in 1:length(x)) {
-#      for(j in 1:length(x)) {
-#        if(x[i])
-#      }
-#    }
-#  }
+  mode_of_X <- function(x){
+    temp_high_num <- c()
+    count <- 0
+    for(i in 1:length(x))   {
+      for(j in 1:length(x))    {
+        if(x[i] == x[j]) {
+            count = count + 1
+            print(count)
+          }
+      }
+      if(count > 1) {
+        temp_high_num <- x[i]
+        print(temp_high_num)
+        count <- 0
+      }
+    }
+      return(temp_high_num)
+  }
+  
+  mode_of_X(aa)
 
 ```
 

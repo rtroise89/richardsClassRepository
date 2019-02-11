@@ -586,20 +586,47 @@ newvec_num</code></pre>
 </div>
 <div id="problem-10" class="section level1">
 <h1>Problem 10</h1>
-<pre class="r"><code>  aa &lt;- c(10,20,30,40,50,50)
+<pre class="r"><code>  aa &lt;- c(10,10,20,30,40,50)
+
   mean_of_X &lt;- function(x) {
     return (sum(x)/length(x))
   }
   
   mean_of_X(aa)</code></pre>
-<pre><code>## [1] 33.33333</code></pre>
-<pre class="r"><code>#  mode_of_X &lt;- function(x) {
-#    for(i in 1:length(x)) {
-#      for(j in 1:length(x)) {
-#        if(x[i])
-#      }
-#    }
-#  }</code></pre>
+<pre><code>## [1] 26.66667</code></pre>
+<pre class="r"><code>  mode_of_X &lt;- function(x){
+    temp_high_num &lt;- c()
+    count &lt;- 0
+    for(i in 1:length(x))   {
+      for(j in 1:length(x))    {
+        if(x[i] == x[j]) {
+            count = count + 1
+            print(count)
+          }
+      }
+      if(count &gt; 1) {
+        temp_high_num &lt;- x[i]
+        print(temp_high_num)
+        count &lt;- 0
+      }
+    }
+      return(temp_high_num)
+  }
+  
+  mode_of_X(aa)</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 10
+## [1] 1
+## [1] 2
+## [1] 10
+## [1] 1
+## [1] 2
+## [1] 30
+## [1] 1
+## [1] 2
+## [1] 50</code></pre>
+<pre><code>## [1] 50</code></pre>
 </div>
 
 
