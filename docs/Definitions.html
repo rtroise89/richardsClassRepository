@@ -11,7 +11,7 @@
 
 
 
-<title>Definitions</title>
+<title>Dictionary</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -386,7 +386,7 @@ div.tocify {
   <a href="Links.html">Links</a>
 </li>
 <li>
-  <a href="Definitions.html">Definitions</a>
+  <a href="Definitions.html">Dictionary</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -400,7 +400,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Definitions</h1>
+<h1 class="title toc-ignore">Dictionary</h1>
 
 </div>
 
@@ -603,6 +603,55 @@ div.tocify {
 <pre class="r"><code>  b_list &lt;- list(c(1,2,3),2,5)
   b_list[[1]][3]</code></pre>
 <pre><code>## [1] 3</code></pre>
+</div>
+<div id="matrix" class="section level1">
+<h1>matrix()</h1>
+<p>*With no other arguments, function will create a one dimensional matrix. Utilizing nrow and ncol creates more rows and columns.</p>
+<pre class="r"><code>  matrix(c(1,2,3,11,12,13))</code></pre>
+<pre><code>##      [,1]
+## [1,]    1
+## [2,]    2
+## [3,]    3
+## [4,]   11
+## [5,]   12
+## [6,]   13</code></pre>
+<pre class="r"><code>  matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    3   12
+## [2,]    2   11   13</code></pre>
+<pre class="r"><code>  matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3, byrow = TRUE)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]   11   12   13</code></pre>
+</div>
+<div id="factor" class="section level1">
+<h1>factor()</h1>
+<p>*Outputs the vector given in the function and assigns levels the indicies</p>
+<pre class="r"><code>  alpha &lt;- c(2,4,6,8,10)
+  factor(alpha)</code></pre>
+<pre><code>## [1] 2  4  6  8  10
+## Levels: 2 4 6 8 10</code></pre>
+</div>
+<div id="rbind" class="section level1">
+<h1>rbind()</h1>
+<p>*Combines two vectors into distinct rows</p>
+<pre class="r"><code>  apple &lt;- c(1,2,3)
+  orange &lt;- c(2,4,6)
+  rbind(apple, orange)</code></pre>
+<pre><code>##        [,1] [,2] [,3]
+## apple     1    2    3
+## orange    2    4    6</code></pre>
+</div>
+<div id="cbind" class="section level1">
+<h1>cbind()</h1>
+<p>*Combines two vectors into distinct columns</p>
+<pre class="r"><code>  apple &lt;- c(1,2,3)
+  orange &lt;- c(2,4,6)
+  cbind(apple, orange)</code></pre>
+<pre><code>##      apple orange
+## [1,]     1      2
+## [2,]     2      4
+## [3,]     3      6</code></pre>
 </div>
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Definitions"
+title: "Dictionary"
 output:
   html_document:
     toc: true
@@ -189,5 +189,40 @@ column names defined by user in csv file.
   a_list[[2]]
   b_list <- list(c(1,2,3),2,5)
   b_list[[1]][3]
+```
+
+# matrix()
+
+*With no other arguments, function will create a one dimensional matrix. Utilizing nrow and ncol creates more rows and columns.
+```{r}
+  matrix(c(1,2,3,11,12,13))
+  matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3)
+  matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3, byrow = TRUE)
+```
+
+# factor()
+
+*Outputs the vector given in the function and assigns levels the indicies
+```{r}
+  alpha <- c(2,4,6,8,10)
+  factor(alpha)
+```
+
+#rbind()
+
+*Combines two vectors into distinct rows
+```{r}
+  apple <- c(1,2,3)
+  orange <- c(2,4,6)
+  rbind(apple, orange)
+```
+
+#cbind()
+
+*Combines two vectors into distinct columns
+```{r}
+  apple <- c(1,2,3)
+  orange <- c(2,4,6)
+  cbind(apple, orange)
 ```
 

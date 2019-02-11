@@ -124,10 +124,52 @@ while(n <= 993){
   n <- n+7
 }
 
-#for(a in 1:length(vec_num)){
-#  if(is.na(vec_num[a])){
-#    vec_num[a] <- NULL
-#  }
-#}
+# Create new vector without tagged numbers
+
+newvec_num <- c()
+
+for(a in 1:length(vec_num)){
+  if(!is.na(vec_num[a])){
+    newvec_num <- c(newvec_num, vec_num[a])
+  }
+  
+}
+
+newvec_num
 
 ```
+
+# Problem 8
+
+```{r}
+  u <- runif(100)
+  u
+```
+
+# Problem 9
+
+```{r}
+  alpha <- runif(100, min = 1, max = 9)
+  alpha
+```
+
+# Problem 10
+
+```{r}
+  aa <- c(10,20,30,40,50,50)
+  mean_of_X <- function(x) {
+    return (sum(x)/length(x))
+  }
+  
+  mean_of_X(aa)
+  
+#  mode_of_X <- function(x) {
+#    for(i in 1:length(x)) {
+#      for(j in 1:length(x)) {
+#        if(x[i])
+#      }
+#    }
+#  }
+
+```
+
