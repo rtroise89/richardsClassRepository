@@ -586,14 +586,14 @@ newvec_num</code></pre>
 </div>
 <div id="problem-10" class="section level1">
 <h1>Problem 10</h1>
-<pre class="r"><code>  aa &lt;- c(10,10,20,30,40,50)
+<pre class="r"><code>  aa &lt;- c(10,20,20,30,40,50,60)
 
   mean_of_X &lt;- function(x) {
     return (sum(x)/length(x))
   }
   
   mean_of_X(aa)</code></pre>
-<pre><code>## [1] 26.66667</code></pre>
+<pre><code>## [1] 32.85714</code></pre>
 <pre class="r"><code>  mode_of_X &lt;- function(x){
     temp_high_num &lt;- c()
     count &lt;- 0
@@ -601,32 +601,142 @@ newvec_num</code></pre>
       for(j in 1:length(x))    {
         if(x[i] == x[j]) {
             count = count + 1
-            print(count)
           }
       }
       if(count &gt; 1) {
         temp_high_num &lt;- x[i]
-        print(temp_high_num)
-        count &lt;- 0
       }
+      count &lt;- 0
     }
       return(temp_high_num)
   }
   
   mode_of_X(aa)</code></pre>
-<pre><code>## [1] 1
-## [1] 2
-## [1] 10
-## [1] 1
-## [1] 2
-## [1] 10
-## [1] 1
-## [1] 2
-## [1] 30
-## [1] 1
-## [1] 2
-## [1] 50</code></pre>
+<pre><code>## [1] 20</code></pre>
+<pre class="r"><code>  median_of_X &lt;- function(x){
+    if(length(x)%%2 &gt; 0) {
+      med &lt;- x[((length(x)-1)/2) + 1]
+    }
+      else{
+        med &lt;- (x[(length(x)/2)] + x[(length(x)/2) + 1])/2
+      }
+    
+    return(med)
+  }
+  
+  median_of_X(aa)</code></pre>
+<pre><code>## [1] 30</code></pre>
+<pre class="r"><code>  range_of_X &lt;- function(x){
+    rge &lt;- x[length(x)] - x[1]
+    return(rge)
+  }
+  
+  range_of_X(aa)</code></pre>
 <pre><code>## [1] 50</code></pre>
+<pre class="r"><code>  std_dev_of_X &lt;- function(x) {
+    avg &lt;- mean_of_X(x)
+    sumOfsquares &lt;- 0
+    
+    for(i in 1:length(x)) {
+      sumOfsquares = sumOfsquares + (x[i] - avg)^2
+    }
+    
+    std_dev &lt;- sqrt(sumOfsquares/(length(x)-1))
+    
+    return(std_dev)
+  }
+  
+  std_dev_of_X(aa)</code></pre>
+<pre><code>## [1] 17.99471</code></pre>
+</div>
+<div id="problem-11" class="section level1">
+<h1>Problem 11</h1>
+<pre class="r"><code>  bb &lt;- &quot;adrthbjyiop&quot;
+  dd &lt;- unlist(strsplit(bb, &quot;&quot;))
+  print(length(dd))</code></pre>
+<pre><code>## [1] 11</code></pre>
+</div>
+<div id="problem-12" class="section level1">
+<h1>Problem 12</h1>
+<pre class="r"><code>  cc &lt;- &quot;This is a sentence&quot;
+  ee &lt;- unlist(strsplit(bb, split = &quot; &quot;))
+  print(length(ee))</code></pre>
+<pre><code>## [1] 1</code></pre>
+</div>
+<div id="problem-13" class="section level1">
+<h1>Problem 13</h1>
+<pre class="r"><code>  paragraph &lt;- &quot;Four score and seven years ago our fathers brought forth on this           continent, a new nation, conceived in Liberty, and dedicated to the proposition that     all men are created equal. Now we are engaged in a great civil war, testing whether      that nation, or any nation so conceived and so dedicated, can long endure. We are met    on a great battle-field of that war.&quot;
+
+  sep_paragraph &lt;- unlist(strsplit(paragraph, split = &quot;.&quot;, fixed = TRUE))
+  print(length(sep_paragraph))</code></pre>
+<pre><code>## [1] 3</code></pre>
+</div>
+<div id="problem-14-alternative-solution" class="section level1">
+<h1>Problem 14 (alternative solution)</h1>
+<pre class="r"><code> search_char &lt;- function(x, letter){
+    dd &lt;- unlist(strsplit(x, &quot;&quot;))
+    count &lt;- 0
+    for(i in 1:length(dd)) {
+        if(dd[i] == letter){
+            count = count + 1
+          }
+
+    }
+      return(count)
+ }
+
+  search_char(&quot;abcdeggg&quot;, &quot;g&quot;)</code></pre>
+<pre><code>## [1] 3</code></pre>
+</div>
+<div id="problem-15" class="section level1">
+<h1>Problem 15</h1>
+<pre class="r"><code>  test_word &lt;- &quot;hello&quot;
+  test_sentence &lt;- &quot;hello my name is Richard&quot;
+  split_test_sentence &lt;- unlist(strsplit(test_sentence, split = &quot; &quot;))
+  test_word%in%split_test_sentence</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="problem-16" class="section level1">
+<h1>Problem 16</h1>
+<pre class="r"><code>  current_time &lt;- (as.numeric(Sys.time())*1000)
+  print(current_time, digits = 15)</code></pre>
+<pre><code>## [1] 1550206689216.36</code></pre>
+</div>
+<div id="problem-17" class="section level1">
+<h1>Problem 17</h1>
+<pre class="r"><code>  current_time1 &lt;- (as.numeric(Sys.time())*1000)
+  for(i in 1:10000000){}
+  current_time2 &lt;- (as.numeric(Sys.time())*1000)
+  cat(total_time = current_time2 - current_time1, &quot;milliseconds&quot;)</code></pre>
+<pre><code>## 252.4021 milliseconds</code></pre>
+</div>
+<div id="problem-18" class="section level1">
+<h1>Problem 18</h1>
+<pre class="r"><code>  table2 &lt;- read.csv(&quot;abc.csv&quot;)
+  table2$Fruits</code></pre>
+<pre><code>## [1] apples  bananas oranges grapes 
+## Levels: apples bananas grapes oranges</code></pre>
+</div>
+<div id="problem-19" class="section level1">
+<h1>Problem 19</h1>
+<pre class="r"><code>  table3 &lt;- write.table(c(1,2,3,4,5,6), &quot;abc3.txt&quot;)
+  table3 &lt;- read.table(&quot;abc3.txt&quot;)
+  table3</code></pre>
+<pre><code>##   x
+## 1 1
+## 2 2
+## 3 3
+## 4 4
+## 5 5
+## 6 6</code></pre>
+</div>
+<div id="problem-20" class="section level1">
+<h1>Problem 20</h1>
+<pre class="r"><code>  random_matrix &lt;- matrix(runif(100, min = 1, max = 9), ncol=20,nrow=20)
+  random_matrix[,19]</code></pre>
+<pre><code>##  [1] 4.880158 3.244540 5.716508 6.738839 2.153436 5.979261 1.294626
+##  [8] 4.414270 6.990961 5.797040 8.029916 6.309250 8.498245 3.108051
+## [15] 7.822761 3.512670 8.492516 2.601541 3.820639 6.447718</code></pre>
 </div>
 
 

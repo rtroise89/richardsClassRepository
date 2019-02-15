@@ -156,7 +156,7 @@ newvec_num
 # Problem 10
 
 ```{r}
-  aa <- c(10,10,20,30,40,50)
+  aa <- c(10,20,20,30,40,50,60)
 
   mean_of_X <- function(x) {
     return (sum(x)/length(x))
@@ -171,19 +171,143 @@ newvec_num
       for(j in 1:length(x))    {
         if(x[i] == x[j]) {
             count = count + 1
-            print(count)
           }
       }
       if(count > 1) {
         temp_high_num <- x[i]
-        print(temp_high_num)
-        count <- 0
       }
+      count <- 0
     }
       return(temp_high_num)
   }
   
   mode_of_X(aa)
+  
+  median_of_X <- function(x){
+    if(length(x)%%2 > 0) {
+      med <- x[((length(x)-1)/2) + 1]
+    }
+      else{
+        med <- (x[(length(x)/2)] + x[(length(x)/2) + 1])/2
+      }
+    
+    return(med)
+  }
+  
+  median_of_X(aa)
+  
+  range_of_X <- function(x){
+    rge <- x[length(x)] - x[1]
+    return(rge)
+  }
+  
+  range_of_X(aa)
+  
+  std_dev_of_X <- function(x) {
+    avg <- mean_of_X(x)
+    sumOfsquares <- 0
+    
+    for(i in 1:length(x)) {
+      sumOfsquares = sumOfsquares + (x[i] - avg)^2
+    }
+    
+    std_dev <- sqrt(sumOfsquares/(length(x)-1))
+    
+    return(std_dev)
+  }
+  
+  std_dev_of_X(aa)
 
+```
+
+# Problem 11
+
+```{r}
+  bb <- "adrthbjyiop"
+  dd <- unlist(strsplit(bb, ""))
+  print(length(dd))
+```
+
+# Problem 12
+
+```{r}
+  cc <- "This is a sentence"
+  ee <- unlist(strsplit(bb, split = " "))
+  print(length(ee))
+```
+
+# Problem 13
+
+```{r}
+  paragraph <- "Four score and seven years ago our fathers brought forth on this           continent, a new nation, conceived in Liberty, and dedicated to the proposition that     all men are created equal. Now we are engaged in a great civil war, testing whether      that nation, or any nation so conceived and so dedicated, can long endure. We are met    on a great battle-field of that war."
+
+  sep_paragraph <- unlist(strsplit(paragraph, split = ".", fixed = TRUE))
+  print(length(sep_paragraph))
+```
+
+# Problem 14 (alternative solution)
+
+```{r}
+ search_char <- function(x, letter){
+    dd <- unlist(strsplit(x, ""))
+    count <- 0
+    for(i in 1:length(dd)) {
+        if(dd[i] == letter){
+            count = count + 1
+          }
+
+    }
+      return(count)
+ }
+
+  search_char("abcdeggg", "g")
+  
+```
+
+# Problem 15
+
+```{r}
+  test_word <- "hello"
+  test_sentence <- "hello my name is Richard"
+  split_test_sentence <- unlist(strsplit(test_sentence, split = " "))
+  test_word%in%split_test_sentence
+```
+
+# Problem 16
+
+```{r}
+  current_time <- (as.numeric(Sys.time())*1000)
+  print(current_time, digits = 15)
+```
+
+# Problem 17
+
+```{r}
+  current_time1 <- (as.numeric(Sys.time())*1000)
+  for(i in 1:10000000){}
+  current_time2 <- (as.numeric(Sys.time())*1000)
+  cat(total_time = current_time2 - current_time1, "milliseconds")
+```
+
+# Problem 18
+
+```{r}
+  table2 <- read.csv("abc.csv")
+  table2$Fruits
+```
+
+# Problem 19
+
+```{r}
+  table3 <- write.table(c(1,2,3,4,5,6), "abc3.txt")
+  table3 <- read.table("abc3.txt")
+  table3
+```
+
+# Problem 20
+
+```{r}
+  random_matrix <- matrix(runif(100, min = 1, max = 9), ncol=20,nrow=20)
+  random_matrix[,19]
 ```
 
