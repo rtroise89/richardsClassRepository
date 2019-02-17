@@ -232,14 +232,14 @@ newvec_num
 
 ```{r}
   cc <- "This is a sentence"
-  ee <- unlist(strsplit(bb, split = " "))
+  ee <- unlist(strsplit(cc, split = " "))
   print(length(ee))
 ```
 
 # Problem 13
 
 ```{r}
-  paragraph <- "Four score and seven years ago our fathers brought forth on this           continent, a new nation, conceived in Liberty, and dedicated to the proposition that     all men are created equal. Now we are engaged in a great civil war, testing whether      that nation, or any nation so conceived and so dedicated, can long endure. We are met    on a great battle-field of that war."
+  paragraph <- "Four score and seven years ago our fathers brought forth on this    continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal. Now we are engaged in a great civil war, testing whether that nation, or any nation so conceived and so dedicated, can long endure. We are met on a great battle-field of that war."
 
   sep_paragraph <- unlist(strsplit(paragraph, split = ".", fixed = TRUE))
   print(length(sep_paragraph))
@@ -311,3 +311,9 @@ newvec_num
   random_matrix[,19]
 ```
 
+# Problem 21
+
+```{r}
+  matrixA <- matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3)
+  write.csv(matrixA, file = "sample_matrix.csv", row.names = FALSE)
+```

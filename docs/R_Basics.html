@@ -659,13 +659,13 @@ newvec_num</code></pre>
 <div id="problem-12" class="section level1">
 <h1>Problem 12</h1>
 <pre class="r"><code>  cc &lt;- &quot;This is a sentence&quot;
-  ee &lt;- unlist(strsplit(bb, split = &quot; &quot;))
+  ee &lt;- unlist(strsplit(cc, split = &quot; &quot;))
   print(length(ee))</code></pre>
-<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 4</code></pre>
 </div>
 <div id="problem-13" class="section level1">
 <h1>Problem 13</h1>
-<pre class="r"><code>  paragraph &lt;- &quot;Four score and seven years ago our fathers brought forth on this           continent, a new nation, conceived in Liberty, and dedicated to the proposition that     all men are created equal. Now we are engaged in a great civil war, testing whether      that nation, or any nation so conceived and so dedicated, can long endure. We are met    on a great battle-field of that war.&quot;
+<pre class="r"><code>  paragraph &lt;- &quot;Four score and seven years ago our fathers brought forth on this    continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal. Now we are engaged in a great civil war, testing whether that nation, or any nation so conceived and so dedicated, can long endure. We are met on a great battle-field of that war.&quot;
 
   sep_paragraph &lt;- unlist(strsplit(paragraph, split = &quot;.&quot;, fixed = TRUE))
   print(length(sep_paragraph))</code></pre>
@@ -737,6 +737,11 @@ newvec_num</code></pre>
 <pre><code>##  [1] 4.880158 3.244540 5.716508 6.738839 2.153436 5.979261 1.294626
 ##  [8] 4.414270 6.990961 5.797040 8.029916 6.309250 8.498245 3.108051
 ## [15] 7.822761 3.512670 8.492516 2.601541 3.820639 6.447718</code></pre>
+</div>
+<div id="problem-21" class="section level1">
+<h1>Problem 21</h1>
+<pre class="r"><code>  matrixA &lt;- matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3)
+  write.csv(matrixA, file = &quot;sample_matrix.csv&quot;, row.names = FALSE)</code></pre>
 </div>
 
 
