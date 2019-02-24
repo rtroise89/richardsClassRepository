@@ -314,6 +314,40 @@ newvec_num
 # Problem 21
 
 ```{r}
-  matrixA <- matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3)
+  matrixA <- data.frame(x = c(1,2,3), y = c(3,6,9), z = c(10,20,30))
   write.csv(matrixA, file = "sample_matrix.csv", row.names = FALSE)
 ```
+
+# HARDER PROBLEMS
+
+Fizzbuzz
+
+```{r, eval=FALSE}
+  vec_num <- c(1:100)
+
+  k <- 1
+  while(k <= 100) {    
+    if(vec_num[k]%%3==0 || vec_num[k]%%5==0) {
+      if(vec_num[k]%%3==0 && vec_num[k]%%5== 0) {
+          print("FizzBuzz")
+          k <- k + 1
+        }
+          else if(vec_num[k]%%5 == 0) {
+            print("Buzz")
+            k <- k + 1
+          }
+        else {
+          print("Fizz")
+          k <- k + 1
+        }
+    }
+    
+      else {
+        print(vec_num[k])
+        k <- k + 1          
+      }
+
+}
+
+```
+

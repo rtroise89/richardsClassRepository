@@ -740,8 +740,37 @@ newvec_num</code></pre>
 </div>
 <div id="problem-21" class="section level1">
 <h1>Problem 21</h1>
-<pre class="r"><code>  matrixA &lt;- matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3)
+<pre class="r"><code>  matrixA &lt;- data.frame(x = c(1,2,3), y = c(3,6,9), z = c(10,20,30))
   write.csv(matrixA, file = &quot;sample_matrix.csv&quot;, row.names = FALSE)</code></pre>
+</div>
+<div id="harder-problems" class="section level1">
+<h1>HARDER PROBLEMS</h1>
+<p>Fizzbuzz</p>
+<pre class="r"><code>  vec_num &lt;- c(1:100)
+
+  k &lt;- 1
+  while(k &lt;= 100) {    
+    if(vec_num[k]%%3==0 || vec_num[k]%%5==0) {
+      if(vec_num[k]%%3==0 &amp;&amp; vec_num[k]%%5== 0) {
+          print(&quot;FizzBuzz&quot;)
+          k &lt;- k + 1
+        }
+          else if(vec_num[k]%%5 == 0) {
+            print(&quot;Buzz&quot;)
+            k &lt;- k + 1
+          }
+        else {
+          print(&quot;Fizz&quot;)
+          k &lt;- k + 1
+        }
+    }
+    
+      else {
+        print(vec_num[k])
+        k &lt;- k + 1          
+      }
+
+}</code></pre>
 </div>
 
 
