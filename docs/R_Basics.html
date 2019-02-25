@@ -771,6 +771,47 @@ newvec_num</code></pre>
       }
 
 }</code></pre>
+<p>Frequency Count</p>
+<pre class="r"><code> search_char &lt;- function(x, letter){
+    dd &lt;- unlist(strsplit(x, &quot;&quot;))
+    count &lt;- 0
+    for(i in 1:length(dd)) {
+        if(dd[i] == letter){
+            count &lt;- count + 1
+          }
+
+    }
+      return(count)
+ }
+
+  phrase &lt;- &quot;I love R studio&quot;
+  search_phrase &lt;- unlist(strsplit(phrase, &quot;&quot;))
+  found_number &lt;- c()
+  
+  for(i in 1:length(search_phrase)) {
+    found_number &lt;- c(found_number, search_char(phrase, search_phrase[i]))
+  }
+  
+  xx &lt;- data.frame(search_phrase, found_number)
+  print(unique(xx))</code></pre>
+<pre><code>##    search_phrase found_number
+## 1              I            1
+## 2                           3
+## 3              l            1
+## 4              o            2
+## 5              v            1
+## 6              e            1
+## 8              R            1
+## 10             s            1
+## 11             t            1
+## 12             u            1
+## 13             d            1
+## 14             i            1</code></pre>
+<p>Test Random Number Generator</p>
+<pre class="r"><code>  rand_num &lt;- floor(runif(1000000,0,100))
+
+  hist(rand_num, breaks = 101)</code></pre>
+<p><img src="R_Basics_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 
 
