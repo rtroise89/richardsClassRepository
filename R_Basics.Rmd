@@ -382,7 +382,7 @@ Test Random Number Generator
 
 ```{r}
 
-  rand_num <- floor(runif(1000000,0,100))
+  rand_num <- runif(1000000,0,100)
 
   hist(rand_num, breaks = 101)
     

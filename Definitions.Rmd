@@ -226,3 +226,12 @@ column names defined by user in csv file.
   cbind(apple, orange)
 ```
 
+#using ggplot2
+
+```{r}
+ a <- c(1,2,3,4,5)
+ b <- c(2,3,4,6,8)
+ ab <- data.frame(a,b)
+# ggplot(ab, aes(x = a, y = b)) + geom_point()
+```
+
