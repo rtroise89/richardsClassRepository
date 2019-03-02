@@ -1,0 +1,18 @@
+---
+title: "DataVis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+  library(ggplot2)
+  a <- c(1,2,3,2,3,4,5,4)
+  b <- c(4,3,4,3,2,1,2,3)
+  plot_df <- data.frame(a,b)
+  ggplot(plot_df, aes(x=a,y=b)) + geom_point(size=2) + geom_smooth(method=lm)
+
+```
+
