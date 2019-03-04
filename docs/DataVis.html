@@ -330,15 +330,25 @@ $(document).ready(function () {
 <div id="figure-1a" class="section level1">
 <h1>Figure 1a</h1>
 <pre class="r"><code>  library(ggplot2)
-  group &lt;- c(doc_study = rep(&quot;Doctor Study&quot;, 6), buh_study = rep(&quot;Butcher Study&quot;, 6), 
-             fire_study = rep(&quot;Firefighter Study&quot;, 6), 
-             cons_study = rep(&quot;Construction Worker Study&quot;, 6))
-  eval_data &lt;- c(1,1,1,2,3,4,5,6,1,1,2,2,2,2,3,4,1,2,3,4,4,5,6,7)
-  plot_df2 &lt;- data.frame(group,eval_data)
+  group &lt;- c(rep(&quot;Doctor Study&quot;, 10), rep(&quot;Butcher Study&quot;, 10), rep(&quot;Firefighter Study&quot;, 10), 
+             rep(&quot;Construction Worker Study&quot;, 10))
+  group_order &lt;- factor(group, levels = c(&quot;Doctor Study&quot;, &quot;Butcher Study&quot;, &quot;Firefighter Study&quot;,                                                    &quot;Construction Worker Study&quot;))
+  gender &lt;- c(rep(&quot;Man More Likely&quot;,2), rep(&quot;Equally Likely&quot;,8), 
+              rep(&quot;Man More Likely&quot;,3), rep(&quot;Equally Likely&quot;,5), rep(&quot;Woman More Likely&quot;,2),
+              rep(&quot;Man More Likely&quot;,4), rep(&quot;Equally Likely&quot;,5), rep(&quot;Woman More Likely&quot;,1),
+              rep(&quot;Man More Likely&quot;,3), rep(&quot;Equally Likely&quot;,5), rep(&quot;Woman More Likely&quot;,2))
+  gender_order &lt;- factor(gender, levels = c(&quot;Woman More Likely&quot;, &quot;Equally Likely&quot;, &quot;Man More Likely&quot;))
+
+  plot_df2 &lt;- data.frame(group_order,gender_order)
   
-  ggplot(plot_df2, aes(factor(group), fill = eval_data)) +
+  ggplot(plot_df2, aes(group_order, fill = gender_order)) +
     geom_bar(position = &quot;fill&quot;) +
-    theme_classic()</code></pre>
+    theme_classic() +
+    xlab(&quot;&quot;) +
+    ylab(&quot;Precentage of Participants&quot;) +
+    scale_fill_discrete(name = &quot;&quot;) +
+    theme(legend.position = &quot;top&quot;)</code></pre>
+<p><img src="DataVis_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 <div id="figure-1b" class="section level1">
 <h1>Figure 1b</h1>
@@ -346,10 +356,11 @@ $(document).ready(function () {
   group &lt;- c(doc_study = rep(&quot;Doctor Study&quot;, 6), buh_study = rep(&quot;Butcher Study&quot;, 6), 
              fire_study = rep(&quot;Firefighter Study&quot;, 6), 
              cons_study = rep(&quot;Construction Worker Study&quot;, 6))
+  group_order &lt;- factor(group, levels = c(&quot;Doctor Study&quot;, &quot;Butcher Study&quot;, &quot;Firefighter Study&quot;,                                            &quot;Construction Worker Study&quot;))
   eval_data &lt;- c(1,1,1,2,3,4,5,6,1,1,2,2,2,2,3,4,1,2,3,4,4,5,6,7)
-  plot_df2 &lt;- data.frame(group,eval_data)
+  plot_df3 &lt;- data.frame(group_order,eval_data)
   
-  ggplot(plot_df2, aes(factor(group), eval_data)) +
+  ggplot(plot_df3, aes(group_order, eval_data)) +
     geom_violin(fill=&quot;gray80&quot;) +
     theme_classic() +
     ylab(&quot;Evaluation of Person X&quot;) +

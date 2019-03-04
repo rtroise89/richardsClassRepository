@@ -27,17 +27,26 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Figure 1a
 
-```{r, eval=FALSE}
+```{r}
   library(ggplot2)
-  group <- c(doc_study = rep("Doctor Study", 6), buh_study = rep("Butcher Study", 6), 
-             fire_study = rep("Firefighter Study", 6), 
-             cons_study = rep("Construction Worker Study", 6))
-  eval_data <- c(1,1,1,2,3,4,5,6,1,1,2,2,2,2,3,4,1,2,3,4,4,5,6,7)
-  plot_df2 <- data.frame(group,eval_data)
+  group <- c(rep("Doctor Study", 10), rep("Butcher Study", 10), rep("Firefighter Study", 10), 
+             rep("Construction Worker Study", 10))
+  group_order <- factor(group, levels = c("Doctor Study", "Butcher Study", "Firefighter Study",                                                    "Construction Worker Study"))
+  gender <- c(rep("Man More Likely",2), rep("Equally Likely",8), 
+              rep("Man More Likely",3), rep("Equally Likely",5), rep("Woman More Likely",2),
+              rep("Man More Likely",4), rep("Equally Likely",5), rep("Woman More Likely",1),
+              rep("Man More Likely",3), rep("Equally Likely",5), rep("Woman More Likely",2))
+  gender_order <- factor(gender, levels = c("Woman More Likely", "Equally Likely", "Man More Likely"))
+
+  plot_df2 <- data.frame(group_order,gender_order)
   
-  ggplot(plot_df2, aes(factor(group), fill = eval_data)) +
+  ggplot(plot_df2, aes(group_order, fill = gender_order)) +
     geom_bar(position = "fill") +
-    theme_classic()
+    theme_classic() +
+    xlab("") +
+    ylab("Precentage of Participants") +
+    scale_fill_discrete(name = "") +
+    theme(legend.position = "top")
 ```
 
 # Figure 1b
@@ -47,10 +56,11 @@ knitr::opts_chunk$set(echo = TRUE)
   group <- c(doc_study = rep("Doctor Study", 6), buh_study = rep("Butcher Study", 6), 
              fire_study = rep("Firefighter Study", 6), 
              cons_study = rep("Construction Worker Study", 6))
+  group_order <- factor(group, levels = c("Doctor Study", "Butcher Study", "Firefighter Study",                                            "Construction Worker Study"))
   eval_data <- c(1,1,1,2,3,4,5,6,1,1,2,2,2,2,3,4,1,2,3,4,4,5,6,7)
-  plot_df2 <- data.frame(group,eval_data)
+  plot_df3 <- data.frame(group_order,eval_data)
   
-  ggplot(plot_df2, aes(factor(group), eval_data)) +
+  ggplot(plot_df3, aes(group_order, eval_data)) +
     geom_violin(fill="gray80") +
     theme_classic() +
     ylab("Evaluation of Person X") +
