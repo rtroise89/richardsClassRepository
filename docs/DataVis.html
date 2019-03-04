@@ -322,8 +322,7 @@ $(document).ready(function () {
     theme_classic() +
     xlab(&quot;Avg Frequency of Non Social Risk&quot;) +
     ylab(&quot;Avg Frequency of Social Risk&quot;) +
-    scale_y_continuous(breaks = seq(0, 80, by = 10)) +
-    scale_x_continuous(breaks = seq(0, 80, by = 10))</code></pre>
+    coord_cartesian(xlim=c(0,70),ylim=c(0,70))</code></pre>
 <p><img src="DataVis_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <pre class="r"><code>  library(ggplot2)
   group &lt;- c(doc_study = rep(&quot;Doctor Study&quot;, 6), buh_study = rep(&quot;Butcher Study&quot;, 6), 
