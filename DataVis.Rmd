@@ -68,3 +68,25 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
+# Figure 6
+
+```{r}
+  library(ggplot2)
+    Names <-rep(c("Dara", "Azalea", "Barbi", "Rowena", "Fiona"), each = 2)
+    MF <- rnorm(10,45,25) 
+    Condition <- rep(c("Social","NonSocial"),5)
+    Condition_ordered <- factor(Condition, c("Social", "NonSocial"))
+    Aversity <- rep(c("Aversive","Not Aversive"), times=c(4,6))
+    
+    plot_df4 <- data.frame(Names, MF, Condition_ordered, Aversity)
+  
+  ggplot(plot_df4, aes(x = Condition_ordered, y = MF, group = Names)) +
+    geom_line(aes(linetype=Aversity))+
+    geom_text(label=Names) +
+    theme_classic() +
+    ylab("Mean Frequency of Risky Choice") +
+    xlab("") +
+    theme(legend.position="none")
+
+```
+

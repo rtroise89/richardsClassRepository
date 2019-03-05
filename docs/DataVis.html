@@ -367,6 +367,26 @@ $(document).ready(function () {
     xlab(&quot;&quot;)</code></pre>
 <p><img src="DataVis_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
+<div id="figure-6-1" class="section level1">
+<h1>Figure 6</h1>
+<pre class="r"><code>  library(ggplot2)
+    Names &lt;-rep(c(&quot;Dara&quot;, &quot;Azalea&quot;, &quot;Barbi&quot;, &quot;Rowena&quot;, &quot;Fiona&quot;), each = 2)
+    MF &lt;- rnorm(10,45,25) 
+    Condition &lt;- rep(c(&quot;Social&quot;,&quot;NonSocial&quot;),5)
+    Condition_ordered &lt;- factor(Condition, c(&quot;Social&quot;, &quot;NonSocial&quot;))
+    Aversity &lt;- rep(c(&quot;Aversive&quot;,&quot;Not Aversive&quot;), times=c(4,6))
+    
+    plot_df4 &lt;- data.frame(Names, MF, Condition_ordered, Aversity)
+  
+  ggplot(plot_df4, aes(x = Condition_ordered, y = MF, group = Names)) +
+    geom_line(aes(linetype=Aversity))+
+    geom_text(label=Names) +
+    theme_classic() +
+    ylab(&quot;Mean Frequency of Risky Choice&quot;) +
+    xlab(&quot;&quot;) +
+    theme(legend.position=&quot;none&quot;)</code></pre>
+<p><img src="DataVis_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
 
 
 
