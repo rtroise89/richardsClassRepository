@@ -12,4 +12,6 @@ navbar:
       href: Definitions.html
     - text: "DataVis"
       href: DataVis.html
+    - text: "DataWrangle_Richard"
+      href: DataWrangleFlanker_student.html
 output_dir: "docs"

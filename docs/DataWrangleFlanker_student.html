@@ -312,45 +312,86 @@ $(document).ready(function () {
 </div>
 
 
-<div id="labjournalwebsite" class="section level1">
-<h1>LabJournalWebsite</h1>
-<p>An R Markdown website template for a lab journal <a href="https://crumplab.github.io/LabJournalWebsite/index.html" class="uri">https://crumplab.github.io/LabJournalWebsite/index.html</a></p>
-<p>To use this, click the download as .zip button to start from a local computer, or skip down to the github example to fork this and get started that way.</p>
-<p>The unzipped folder contains all of the files you need to compile a website in R Markdown. This should all work fine if you have the latest version of R and R-studio installed.</p>
-<div id="steps-for-compiling-on-your-local-computer" class="section level2">
-<h2>Steps for compiling on your local computer</h2>
-<ol style="list-style-type: decimal">
-<li>Make sure R and R-studio are installed</li>
-<li>Make sure the rmarkdown package is installed in R-studio. Open R-studio, click the packages tab in the lower left hand corner, click install packages, type in rmarkdown, make sure “install dependencies” is clicked on, then press install. Close R-studio.</li>
-<li>Navigate to the folder you just downloaded, open the ‘LabJournalWebsite.Proj’ file. This should automatically open R-studio, and your current working environment will be inside this project. That means everything you save will be auto saved to this folder (unless you tell R-studio to save something somewhere else.</li>
-<li>Inside R-studio you should see a files tab in the bottom right hand corner. Most files you click will be opened up as text files in the R-studio editor. Click the “Index.Rmd” file.</li>
-<li>To compile the entire website, find the build tab in the top right hand corner. You should see the option to “build website”. Click this. The website should be built.</li>
-<li>After the website is built, you should be able to see it in the R-studio browser. There is a little button (blue arrow with a little browser icon) that allows you to pop the website into your default web-browser. This way you can look at the website in your browser.</li>
-</ol>
-<p>Important: After compilation, all of the files for displaying your website are saved in the folder where your R project resides. When you look at these in a browser (for example, by going to the folder and dragging the index.html file into a browser), you are loading from your disk. Only you will be able to see the website, because it is on your hard-drive. You need to upload to a web server to serve the webpage on the internet.</p>
+<div id="flanker-task" class="section level2">
+<h2>Flanker task</h2>
+<p>In a flanker task, participants identify a central stimulus (as quickly and accurately) as possible, while ignoring distracting stimuli presented on the left or right of the central stimulus (the flankers).</p>
+<p>For example, the stimulus could be “HHH”, and the correct response would be H. This is called a compatible (or congruent) stimulus because the flanking Hs are the same as the central stimulus. Alternatively, the stimulus could be “HSH”, and the correct resposne would be S. This is called an incompatible (or incongruent) stimulus because the flanking Hs are different from the central stimulus.</p>
+<p>The data for this assignment come from a flanker task where participants responded to many flanker stimuli over several trials.</p>
 </div>
-<div id="steps-for-serving-your-webpage-using-github-pages." class="section level2">
-<h2>Steps for serving your webpage using github pages.</h2>
-<p>This is the source code repository for making the webpage in R-studio. At the same time, the resulting website is being served from this repository at this link <a href="https://crumplab.github.io/LabJournalWebsite/index.html" class="uri">https://crumplab.github.io/LabJournalWebsite/index.html</a>.</p>
-<p>Every github repository has the capability of serving html files (web page files) contained in the repository, this is called github pages. How this works depends a little bit on the specific repository you are using. For this repository. The webpage is served from the docs folder. The example files are set so that when you compile the example in R-studio, the output automatically goes into the docs folder. As a result, when you have these files in a github repository, github will serve the html files in your docs folder as a website.</p>
-<p><strong>Steps</strong></p>
+<div id="load-the-data-and-libraries-you-will-use" class="section level2">
+<h2>Load the data and libraries you will use</h2>
+<p>I will help you with some sample code that compiles all of the text files in a single long format data frame.</p>
+<p>The data is contained in this .zip file: <a href="https://crumplab.github.io/psyc7709/Presentations/FlankerData.zip">FlankerData.zip</a></p>
+<p>The code chunk below assumes that you have placed the folder FlankerData into your R project folder.</p>
+<pre class="r"><code>library(data.table)
+library(dplyr)
+library(ggplot2)
+
+
+# get the file names
+file_names &lt;- list.files(path=&quot;FlankerData&quot;)
+
+# create headers for each column
+the_headers &lt;- c(&quot;stimulus&quot;,&quot;congruency&quot;,&quot;proportion&quot;,
+                 &quot;block&quot;,&quot;condition&quot;,&quot;dualtask&quot;,&quot;unknown&quot;,
+                 &quot;stimulus_onset&quot;,&quot;response_time&quot;,&quot;response&quot;,&quot;subject&quot;)
+# Load data
+# create empty dataframe
+all_data&lt;-data.frame()
+
+# loop to add each file to the dataframe
+for(i in file_names){
+  one_subject &lt;- fread(paste(&quot;FlankerData/&quot;,i, sep=&quot;&quot;))
+  names(one_subject) &lt;- the_headers
+  one_subject$subject &lt;- rep(i,dim(one_subject)[1])
+  one_subject &lt;- cbind(one_subject, trial= 1:dim(one_subject)[1])
+  all_data &lt;- rbind(all_data,one_subject)
+}</code></pre>
+</div>
+<div id="pre-processing" class="section level2">
+<h2>Pre-processing</h2>
+<div id="get-accuracy-for-each-trial" class="section level3">
+<h3>get accuracy for each trial</h3>
+<p>A correct response occurs when the letter in the response column is the same as the letter in the middle position of item in the stimulus column. Create an accuracy column that codes whether the response was correct or incorrect on each trial (coding can be TRUE/FALSE, 0/1, or some other coding scheme that identifies correct vs incorrect)</p>
+</div>
+<div id="get-reaction-time-on-each-trial" class="section level3">
+<h3>Get Reaction time on each trial</h3>
+<p>The stimulus_onset column gives a computer timestamp in milliseconds indicating when the stimulus was presented. The response_time column is a timestamp in milliseconds for the response. The difference between the two (response_time - stimulus_onset) is the reaction time in milliseconds. Add a column that calculates the reaction time on each trial.</p>
+<p>**<a href="tip:**" class="uri">tip:**</a> notice that the numbers in response_time and stimulus_onset have the class integer64. Unfortunately, ggplot does not play nice with integers in this format. you will need to make sure your RT column is in the class integer or numeric.</p>
+</div>
+</div>
+<div id="checks" class="section level2">
+<h2>Checks</h2>
+<p>Check how many trials each subject completed in the congruent and incongruent conditions, the mean accuracy for each subject in each congruency condition, and the mean RT for each subject in each congruency condition.</p>
+<div id="exclusion" class="section level3">
+<h3>Exclusion</h3>
+<p>It is common to exclude Reaction times that are very slow. There are many methods and procedures for excluding outlying reaction times. To keep it simple, exclude all RTs that are longer than 2000 ms</p>
+</div>
+</div>
+<div id="analysis" class="section level2">
+<h2>Analysis</h2>
+<div id="reaction-time-analysis" class="section level3">
+<h3>Reaction Time analysis</h3>
 <ol style="list-style-type: decimal">
-<li>For this repo to your github (press the fork button in top right hand corner, then choose your github account)</li>
-<li>You should now see a copy of this repo in your github account</li>
-<li>Click the Settings (also near top right), scroll down to Github Pages options</li>
-<li>click the optino to serve from docs folder</li>
-<li>You should see a little green message above the github pages options with a link to your new webpage.</li>
+<li><p>Get the individual subject mean reaction times for <strong>correct</strong> congruent and incongruent trials.</p></li>
+<li><p>Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.</p></li>
+<li><p>Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect</p></li>
 </ol>
-<p><strong>Editing webpage and serving on github</strong></p>
+<p>**<a href="tip:**" class="uri">tip:**</a> Not all problems have an easy solution in dplyr, this is one them. You may have an easier time using logical indexing of the dataframe to solve this part.</p>
+</div>
+<div id="exploratory-analysis" class="section level3">
+<h3>Exploratory analysis</h3>
+<p>Multiple questions may often be asked of data, especially questions that may not have been of original interest to the researchers.</p>
+<p>In flanker experiments, like this one, it is well known that the flanker effect is modulated by the nature of the previous trial. Specifically, the flanker effect on trial n (the current trial), is larger when the previous trial (trial n-1) involved a congruent item, compared to an incongruent item.</p>
+<p>Transform the data to conduct a sequence analysis. The dataframe should already include a factor (column) for the congruency level of trial n. Make another column that codes for the congruency level of trial n-1 (the previous trial). This creates a 2x2 design with trial n congruency x trial n-1 congruency.</p>
+<p>First get teh subject means for each condition, then create a table and plot for teh overall means and SEMs in each condition. This should include:</p>
 <ol style="list-style-type: decimal">
-<li>download <a href="https://desktop.github.com">github desktop</a></li>
-<li>make sure it is connected to your account</li>
-<li>clone the website repo to your local computer</li>
-<li>Open up the project file in the folder for your repo on your local computer (.rproj file)</li>
-<li>Edit the .rmd files in R-studio</li>
-<li>Recompile website (build website when index.rmd is loaded), or knit individual .rmd files</li>
-<li>send your changes back to the online github repository (note this can be done in github desktop, or directly in R-studio, in R-studio you will see a git tab if you are working in a git repo. Click the git tab, click the diff button, which will show you if there are any new changes. Click each of the files that you want to commit. Write a short note to describe the changes. Press the commit button. Wait a couple seconds, your changes should now be served on your website).</li>
+<li>trial n congruent : trial n-1 congruent</li>
+<li>trial n incongruent : trial n-1 congruent</li>
+<li>trial n congruent : trial n-1 incongruent</li>
+<li>trial n incongruent : trial n-1 incongruent</li>
 </ol>
+<p>**<a href="tip:**" class="uri">tip:**</a> be careful, note that the first trial in each experiment can not be included, because it had no preceding trial</p>
 </div>
 </div>
 
