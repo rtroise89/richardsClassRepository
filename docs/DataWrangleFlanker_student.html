@@ -353,6 +353,44 @@ for(i in file_names){
 <div id="get-accuracy-for-each-trial" class="section level3">
 <h3>get accuracy for each trial</h3>
 <p>A correct response occurs when the letter in the response column is the same as the letter in the middle position of item in the stimulus column. Create an accuracy column that codes whether the response was correct or incorrect on each trial (coding can be TRUE/FALSE, 0/1, or some other coding scheme that identifies correct vs incorrect)</p>
+<pre class="r"><code>  corr_answer = c()
+  for(i in 1:length(all_data$stimulus)){
+      corr_answer &lt;- c(corr_answer, unlist(strsplit(all_data$stimulus[i], &quot;&quot;))[2])
+  }
+
+  corr_response = c()
+  for(i in 1:length(all_data$response)){
+      if(toupper(all_data$response[i]) == corr_answer[i]){
+        corr_response &lt;- c(corr_response, 1)
+      }
+        else {corr_response &lt;- c(corr_response,0)}
+  }
+  
+  cbind(all_data, corr_response)</code></pre>
+<pre><code>##       stimulus congruency proportion block condition dualtask unknown
+##    1:      DDD          C        HPC    B1        C1       ND       2
+##    2:      HHH          C        LPC    B1        C1       ND       2
+##    3:      SSS          C        HPC    B1        C1       ND       1
+##    4:      SSS          C        HPC    B1        C1       ND       2
+##    5:      DDD          C        HPC    B1        C1       ND       2
+##   ---                                                                
+## 4220:      DSD          I        HPC    B2        C1       ND       1
+## 4221:      HJH          I        LPC    B2        C1       ND       2
+## 4222:      JJJ          C        LPC    B2        C1       ND       1
+## 4223:      SSS          C        HPC    B2        C1       ND       1
+## 4224:      HJH          I        LPC    B2        C1       ND       1
+##       stimulus_onset response_time response subject trial corr_response
+##    1:  7.062891e-312 7.062891e-312        d   1.txt     1             1
+##    2:  7.062891e-312 7.062891e-312        h   1.txt     2             1
+##    3:  7.062891e-312 7.062891e-312        s   1.txt     3             1
+##    4:  7.062891e-312 7.062891e-312        s   1.txt     4             1
+##    5:  7.062891e-312 7.062891e-312        d   1.txt     5             1
+##   ---                                                                  
+## 4220:  7.063761e-312 7.063761e-312        d   9.txt   188             0
+## 4221:  7.063761e-312 7.063761e-312        j   9.txt   189             1
+## 4222:  7.063761e-312 7.063761e-312        j   9.txt   190             1
+## 4223:  7.063761e-312 7.063761e-312        s   9.txt   191             1
+## 4224:  7.063761e-312 7.063761e-312        j   9.txt   192             1</code></pre>
 </div>
 <div id="get-reaction-time-on-each-trial" class="section level3">
 <h3>Get Reaction time on each trial</h3>

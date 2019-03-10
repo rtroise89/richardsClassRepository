@@ -53,8 +53,20 @@ for(i in file_names){
 A correct response occurs when the letter in the response column is the same as the letter in the middle position of item in the stimulus column. Create an accuracy column that codes whether the response was correct or incorrect on each trial (coding can be TRUE/FALSE, 0/1, or some other coding scheme that identifies correct vs incorrect)
 
 ```{r}
+  corr_answer = c()
+  for(i in 1:length(all_data$stimulus)){
+      corr_answer <- c(corr_answer, unlist(strsplit(all_data$stimulus[i], ""))[2])
+  }
 
-
+  corr_response = c()
+  for(i in 1:length(all_data$response)){
+      if(toupper(all_data$response[i]) == corr_answer[i]){
+        corr_response <- c(corr_response, 1)
+      }
+        else {corr_response <- c(corr_response,0)}
+  }
+  
+  cbind(all_data, corr_response)
 ```
 
 ### Get Reaction time on each trial
