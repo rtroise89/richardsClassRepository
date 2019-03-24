@@ -9,9 +9,9 @@ Normal Null Distribution
     null_dist <- c()
 
     for(i in 1:10000) {
-    sample_1 <- rnorm(10,0,1)
-    sample_2 <- rnorm(10,0,1)
-    null_dist <- c(null_dist,mean(sample_2)-mean(sample_1))
+      sample_1 <- rnorm(10,0,1)
+      sample_2 <- rnorm(10,0,1)
+      null_dist <- c(null_dist,mean(sample_2)-mean(sample_1))
     }
 ```
 
@@ -44,5 +44,19 @@ T-Distribution
 
 ```{r}
 
+```
+
+Correlation
+
+```{r}
+    corr_dist <- c()
+    
+    for(i in 1:10000) {
+      x <- rnorm(10,0,1)
+      y <- rnorm(10,0,1)
+      corr_dist <- c(corr_dist, cor(x,y))
+    }
+
+    hist(corr_dist)
 ```
 

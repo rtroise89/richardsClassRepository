@@ -320,9 +320,9 @@ $(document).ready(function () {
 <pre class="r"><code>    null_dist &lt;- c()
 
     for(i in 1:10000) {
-    sample_1 &lt;- rnorm(10,0,1)
-    sample_2 &lt;- rnorm(10,0,1)
-    null_dist &lt;- c(null_dist,mean(sample_2)-mean(sample_1))
+      sample_1 &lt;- rnorm(10,0,1)
+      sample_2 &lt;- rnorm(10,0,1)
+      null_dist &lt;- c(null_dist,mean(sample_2)-mean(sample_1))
     }</code></pre>
 <pre class="r"><code>    y &lt;- hist(null_dist, freq = FALSE)</code></pre>
 <p><img src="Statistics_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
@@ -345,6 +345,17 @@ $(document).ready(function () {
     }
     hist(t_dist)</code></pre>
 <p><img src="Statistics_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Correlation</p>
+<pre class="r"><code>    corr_dist &lt;- c()
+    
+    for(i in 1:10000) {
+      x &lt;- rnorm(10,0,1)
+      y &lt;- rnorm(10,0,1)
+      corr_dist &lt;- c(corr_dist, cor(x,y))
+    }
+
+    hist(corr_dist)</code></pre>
+<p><img src="Statistics_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 
 
 
