@@ -316,6 +316,7 @@ $(document).ready(function () {
 </div>
 
 
+<p>Normal Null Distribution</p>
 <pre class="r"><code>    null_dist &lt;- c()
 
     for(i in 1:10000) {
@@ -323,7 +324,7 @@ $(document).ready(function () {
     sample_2 &lt;- rnorm(10,0,1)
     null_dist &lt;- c(null_dist,mean(sample_2)-mean(sample_1))
     }</code></pre>
-<pre class="r"><code>    y &lt;- hist(null_dist)</code></pre>
+<pre class="r"><code>    y &lt;- hist(null_dist, freq = FALSE)</code></pre>
 <p><img src="Statistics_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre class="r"><code>    y$density</code></pre>
 <pre><code>##  [1] 0.0005 0.0000 0.0060 0.0130 0.0460 0.1235 0.2695 0.4905 0.7255 0.8745
@@ -333,6 +334,17 @@ $(document).ready(function () {
 <pre><code>##  [1]  1  2  3  4  5 16 17 18 19 20</code></pre>
 <pre class="r"><code>    y$breaks[i[5]]</code></pre>
 <pre><code>## [1] -1.2</code></pre>
+<p>T-Distribution</p>
+<pre class="r"><code>    1 - pt(c(.5,1,1.5,2,2.5), 9)</code></pre>
+<pre><code>## [1] 0.31453565 0.17171820 0.08392533 0.03827641 0.01693091</code></pre>
+<pre class="r"><code>    t_dist &lt;- c()
+
+    for(i in 1:10000) {
+      sample_3 &lt;- rnorm(10,0,1)
+      t_dist &lt;- c(t_dist,(mean(sample_3)- 0)/(sd(sample_3)/(sqrt(length(sample_3)))))
+    }
+    hist(t_dist)</code></pre>
+<p><img src="Statistics_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 
 
 

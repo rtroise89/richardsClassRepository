@@ -3,6 +3,8 @@ title: "Statistics"
 output: html_document
 ---
 
+Normal Null Distribution
+
 ```{r}
     null_dist <- c()
 
@@ -14,11 +16,33 @@ output: html_document
 ```
 
 ```{r}
-    y <- hist(null_dist)
+    y <- hist(null_dist, freq = FALSE)
     y$density
     i <- which(y$density < 0.05)
     i
     y$breaks[i[5]]
     
+```
+
+T-Distribution
+
+```{r}
+    1 - pt(c(.5,1,1.5,2,2.5), 9)
+
+```
+
+```{r}
+    t_dist <- c()
+
+    for(i in 1:10000) {
+      sample_3 <- rnorm(10,0,1)
+      t_dist <- c(t_dist,(mean(sample_3)- 0)/(sd(sample_3)/(sqrt(length(sample_3)))))
+    }
+    hist(t_dist)
+    
+```
+
+```{r}
+
 ```
 
