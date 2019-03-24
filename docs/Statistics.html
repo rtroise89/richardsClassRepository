@@ -356,6 +356,16 @@ $(document).ready(function () {
 
     hist(corr_dist)</code></pre>
 <p><img src="Statistics_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>F-values</p>
+<pre class="r"><code>    Subjects &lt;- rep(1:4,each=4)
+    A &lt;- c(1,2,3,4)
+    B &lt;- c(3,4,5,6)
+    C &lt;- c(5,6,7,8)
+    
+    all_data &lt;- data.frame(Subjects = as.factor(Subjects),
+                       A,
+                       B,
+                       C)</code></pre>
 
 
 

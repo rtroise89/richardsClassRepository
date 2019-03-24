@@ -60,3 +60,17 @@ Correlation
     hist(corr_dist)
 ```
 
+F-values
+
+```{r}
+    Subjects <- rep(1:4,each=4)
+    A <- c(1,2,3,4)
+    B <- c(3,4,5,6)
+    C <- c(5,6,7,8)
+    
+    all_data <- data.frame(Subjects = as.factor(Subjects),
+                       A,
+                       B,
+                       C)
+```
+
