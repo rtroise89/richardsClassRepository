@@ -3,7 +3,7 @@ title: "Statistics"
 output: html_document
 ---
 
-Normal Null Distribution
+#Normal Null Distribution
 
 ```{r}
     null_dist <- c()
@@ -13,18 +13,40 @@ Normal Null Distribution
       sample_2 <- rnorm(10,0,1)
       null_dist <- c(null_dist,mean(sample_2)-mean(sample_1))
     }
+
+    plot(density(null_dist))
 ```
 
+##directional
+
 ```{r}
-    y <- hist(null_dist, freq = FALSE)
-    y$density
-    i <- which(y$density < 0.05)
-    i
-    y$breaks[i[5]]
+    z <- density(null_dist)
+
+    t_1 <- which(z$x >= 0.5)
+    z$y[t_1[1]]
+    
+    t_2 <- which(z$x >= 1.0)
+    z$y[t_2[1]]
+    
+    t_3 <- which(z$x >= 1.5)
+    z$y[t_3[1]]
+    
+    t_4 <- which(z$x >= 2.0)
+    z$y[t_4[1]]
+    
+    t_5 <- which(z$x >= 2.5)
+    z$y[t_5[1]]
     
 ```
 
-T-Distribution
+##non-directional
+
+```{r}
+    #t_1 <- which(z$x >= 0.5 & z$x <= -0.5)
+```
+
+
+#T-Distribution
 
 ```{r}
     1 - pt(c(.5,1,1.5,2,2.5), 9)
@@ -38,15 +60,31 @@ T-Distribution
       sample_3 <- rnorm(10,0,1)
       t_dist <- c(t_dist,(mean(sample_3)- 0)/(sd(sample_3)/(sqrt(length(sample_3)))))
     }
-    hist(t_dist)
+    plot(density((t_dist)))
     
 ```
 
 ```{r}
+    z <- density(t_dist)
 
+    t_1 <- which(z$x >= 0.5)
+    z$y[t_1[1]]
+    
+    t_2 <- which(z$x >= 1.0)
+    z$y[t_2[1]]
+    
+    t_3 <- which(z$x >= 1.5)
+    z$y[t_3[1]]
+    
+    t_4 <- which(z$x >= 2.0)
+    z$y[t_4[1]]
+    
+    t_5 <- which(z$x >= 2.5)
+    z$y[t_5[1]]
 ```
 
-Correlation
+
+#Correlation
 
 ```{r}
     corr_dist <- c()
@@ -57,20 +95,65 @@ Correlation
       corr_dist <- c(corr_dist, cor(x,y))
     }
 
-    hist(corr_dist)
+    plot(density(corr_dist))
 ```
 
-F-values
+##critical value
+```{r}
+    z <- density(corr_dist)
+
+    c_1 <- which(z$y >= 0.05)
+    abs(z$x[c_1[1]])
+
+```
+
+
+#F-values
 
 ```{r}
-    Subjects <- rep(1:4,each=4)
+    Subjects <- 1:4
     A <- c(1,2,3,4)
     B <- c(3,4,5,6)
     C <- c(5,6,7,8)
+    Mean_subject <- c(A,B,C)
     
-    all_data <- data.frame(Subjects = as.factor(Subjects),
-                       A,
-                       B,
-                       C)
+    all_data <- data.frame(Subjects = as.factor(Subjects), Mean_subject, A,B,C)
+    
+    aov_out <- aov(Mean_subject~A*B*C, all_data)
+    
+    library(xtable)
+    knitr::kable(xtable(summary(aov_out)))
+
+```
+
+#F-distribution
+
+```{r}
+    Subjects <- rep(1:4,3)
+    df2 <- 8
+    df1 <- 2
+
+    F_dist <- c()
+    
+    for(i in 1:10000) {
+      A <- rnorm(4,0,1)
+      B <- rnorm(4,0,1)
+      C <- rnorm(4,0,1)
+      Mean_subject <- c(A,B,C)
+      
+      corr2_dist <- cor(Subjects,Mean_subject)
+      F_dist <- c(F_dist, (corr2_dist/(1-corr2_dist))*(df2/df1))
+    }
+
+    plot(density(F_dist))
+```
+
+##critical value
+
+```{r}
+    z <- density(F_dist)
+
+    f_1 <- which(z$y >= 0.05)
+    z$x[f_1[length(f_1)]]
 ```
 

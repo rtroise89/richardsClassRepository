@@ -316,25 +316,45 @@ $(document).ready(function () {
 </div>
 
 
-<p>Normal Null Distribution</p>
+<div id="normal-null-distribution" class="section level1">
+<h1>Normal Null Distribution</h1>
 <pre class="r"><code>    null_dist &lt;- c()
 
     for(i in 1:10000) {
       sample_1 &lt;- rnorm(10,0,1)
       sample_2 &lt;- rnorm(10,0,1)
       null_dist &lt;- c(null_dist,mean(sample_2)-mean(sample_1))
-    }</code></pre>
-<pre class="r"><code>    y &lt;- hist(null_dist, freq = FALSE)</code></pre>
-<p><img src="Statistics_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>    y$density</code></pre>
-<pre><code>##  [1] 0.0005 0.0000 0.0060 0.0130 0.0460 0.1235 0.2695 0.4905 0.7255 0.8745
-## [11] 0.8185 0.7205 0.4800 0.2485 0.1200 0.0430 0.0155 0.0030 0.0015 0.0005</code></pre>
-<pre class="r"><code>    i &lt;- which(y$density &lt; 0.05)
-    i</code></pre>
-<pre><code>##  [1]  1  2  3  4  5 16 17 18 19 20</code></pre>
-<pre class="r"><code>    y$breaks[i[5]]</code></pre>
-<pre><code>## [1] -1.2</code></pre>
-<p>T-Distribution</p>
+    }
+
+    plot(density(null_dist))</code></pre>
+<p><img src="Statistics_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div id="directional" class="section level2">
+<h2>directional</h2>
+<pre class="r"><code>    z &lt;- density(null_dist)
+
+    t_1 &lt;- which(z$x &gt;= 0.5)
+    z$y[t_1[1]]</code></pre>
+<pre><code>## [1] 0.4764121</code></pre>
+<pre class="r"><code>    t_2 &lt;- which(z$x &gt;= 1.0)
+    z$y[t_2[1]]</code></pre>
+<pre><code>## [1] 0.07425268</code></pre>
+<pre class="r"><code>    t_3 &lt;- which(z$x &gt;= 1.5)
+    z$y[t_3[1]]</code></pre>
+<pre><code>## [1] 0.003334106</code></pre>
+<pre class="r"><code>    t_4 &lt;- which(z$x &gt;= 2.0)
+    z$y[t_4[1]]</code></pre>
+<pre><code>## [1] 1.101745e-05</code></pre>
+<pre class="r"><code>    t_5 &lt;- which(z$x &gt;= 2.5)
+    z$y[t_5[1]]</code></pre>
+<pre><code>## [1] NA</code></pre>
+</div>
+<div id="non-directional" class="section level2">
+<h2>non-directional</h2>
+<pre class="r"><code>    #t_1 &lt;- which(z$x &gt;= 0.5 &amp; z$x &lt;= -0.5)</code></pre>
+</div>
+</div>
+<div id="t-distribution" class="section level1">
+<h1>T-Distribution</h1>
 <pre class="r"><code>    1 - pt(c(.5,1,1.5,2,2.5), 9)</code></pre>
 <pre><code>## [1] 0.31453565 0.17171820 0.08392533 0.03827641 0.01693091</code></pre>
 <pre class="r"><code>    t_dist &lt;- c()
@@ -343,9 +363,28 @@ $(document).ready(function () {
       sample_3 &lt;- rnorm(10,0,1)
       t_dist &lt;- c(t_dist,(mean(sample_3)- 0)/(sd(sample_3)/(sqrt(length(sample_3)))))
     }
-    hist(t_dist)</code></pre>
-<p><img src="Statistics_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>Correlation</p>
+    plot(density((t_dist)))</code></pre>
+<p><img src="Statistics_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>    z &lt;- density(t_dist)
+
+    t_1 &lt;- which(z$x &gt;= 0.5)
+    z$y[t_1[1]]</code></pre>
+<pre><code>## [1] 0.3365395</code></pre>
+<pre class="r"><code>    t_2 &lt;- which(z$x &gt;= 1.0)
+    z$y[t_2[1]]</code></pre>
+<pre><code>## [1] 0.2295245</code></pre>
+<pre class="r"><code>    t_3 &lt;- which(z$x &gt;= 1.5)
+    z$y[t_3[1]]</code></pre>
+<pre><code>## [1] 0.1279021</code></pre>
+<pre class="r"><code>    t_4 &lt;- which(z$x &gt;= 2.0)
+    z$y[t_4[1]]</code></pre>
+<pre><code>## [1] 0.06262899</code></pre>
+<pre class="r"><code>    t_5 &lt;- which(z$x &gt;= 2.5)
+    z$y[t_5[1]]</code></pre>
+<pre><code>## [1] 0.02730707</code></pre>
+</div>
+<div id="correlation" class="section level1">
+<h1>Correlation</h1>
 <pre class="r"><code>    corr_dist &lt;- c()
     
     for(i in 1:10000) {
@@ -354,18 +393,108 @@ $(document).ready(function () {
       corr_dist &lt;- c(corr_dist, cor(x,y))
     }
 
-    hist(corr_dist)</code></pre>
-<p><img src="Statistics_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>F-values</p>
-<pre class="r"><code>    Subjects &lt;- rep(1:4,each=4)
+    plot(density(corr_dist))</code></pre>
+<p><img src="Statistics_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div id="critical-value" class="section level2">
+<h2>critical value</h2>
+<pre class="r"><code>    z &lt;- density(corr_dist)
+
+    c_1 &lt;- which(z$y &gt;= 0.05)
+    abs(z$x[c_1[1]])</code></pre>
+<pre><code>## [1] 0.8137364</code></pre>
+</div>
+</div>
+<div id="f-values" class="section level1">
+<h1>F-values</h1>
+<pre class="r"><code>    Subjects &lt;- 1:4
     A &lt;- c(1,2,3,4)
     B &lt;- c(3,4,5,6)
     C &lt;- c(5,6,7,8)
+    Mean_subject &lt;- c(A,B,C)
     
-    all_data &lt;- data.frame(Subjects = as.factor(Subjects),
-                       A,
-                       B,
-                       C)</code></pre>
+    all_data &lt;- data.frame(Subjects = as.factor(Subjects), Mean_subject, A,B,C)
+    
+    aov_out &lt;- aov(Mean_subject~A*B*C, all_data)
+    
+    library(xtable)</code></pre>
+<pre><code>## Warning: package &#39;xtable&#39; was built under R version 3.5.2</code></pre>
+<pre class="r"><code>    knitr::kable(xtable(summary(aov_out)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Df</th>
+<th align="right">Sum Sq</th>
+<th align="right">Mean Sq</th>
+<th align="right">F value</th>
+<th align="right">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td align="right">1</td>
+<td align="right">15</td>
+<td align="right">15</td>
+<td align="right">3.75</td>
+<td align="right">0.0888262</td>
+</tr>
+<tr class="even">
+<td>A:B</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.00</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="odd">
+<td>A:B:C</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.00</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="even">
+<td>Residuals</td>
+<td align="right">8</td>
+<td align="right">32</td>
+<td align="right">4</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="f-distribution" class="section level1">
+<h1>F-distribution</h1>
+<pre class="r"><code>    Subjects &lt;- rep(1:4,3)
+    df2 &lt;- 8
+    df1 &lt;- 2
+
+    F_dist &lt;- c()
+    
+    for(i in 1:10000) {
+      A &lt;- rnorm(4,0,1)
+      B &lt;- rnorm(4,0,1)
+      C &lt;- rnorm(4,0,1)
+      Mean_subject &lt;- c(A,B,C)
+      
+      corr2_dist &lt;- cor(Subjects,Mean_subject)
+      F_dist &lt;- c(F_dist, (corr2_dist/(1-corr2_dist))*(df2/df1))
+    }
+
+    plot(density(F_dist))</code></pre>
+<p><img src="Statistics_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div id="critical-value-1" class="section level2">
+<h2>critical value</h2>
+<pre class="r"><code>    z &lt;- density(F_dist)
+
+    f_1 &lt;- which(z$y &gt;= 0.05)
+    z$x[f_1[length(f_1)]]</code></pre>
+<pre><code>## [1] 2.936103</code></pre>
+</div>
+</div>
 
 
 
