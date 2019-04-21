@@ -144,10 +144,22 @@ It is common to exclude Reaction times that are very slow. There are many method
                        filter(congruency == 'I') %>%
                        group_by(subject)
     
-    flanker_data <- data.table(subj=c(1,10,11,12,13,14,15,16,17,18,19,2,20,21,22,3,4,5,6,7,8,9),
-                               diff_RT = RT_incongruency$corr_RT - RT_congruency$corr_RT)
-    setorder(flanker_data)
-    plot(flanker_data)
+
+    #avgRT_sub = mean(abs(RT_incongruency$corr_RT - RT_congruency$corr_RT))
+    
+    
+    SEMRT_sub = sd(RT_incongruency$corr_RT - RT_congruency$corr_RT)/sqrt(length(RT_congruency$corr_RT))
+    
+    avg_RT = mean(abs(RT_incongruency$corr_RT - RT_congruency$corr_RT))
+    
+    flanker_data <- data.table(avg_RT, SEMRT_sub)
+    
+                                
+    ggplot(flanker_data, aes(x="all_subj", y=avg_RT))+
+        geom_bar(stat="identity")+
+        ylab("Mean Flanker Effect")+
+        geom_errorbar(aes(ymin=avg_RT-SEMRT_sub,
+                          ymax=avg_RT+SEMRT_sub))
     
 ```
 
@@ -171,6 +183,29 @@ First get teh subject means for each condition, then create a table and plot for
 
 ```{r}
 
+prev_congruency = c()
+
+for (i in 2:length(exclusions_all_data$subject)) {
+  if (exclusions_all_data$subject[i]==exclusions_all_data$subject[i-1]) {
+    prev_congruency[i] = exclusions_all_data$congruency[i-1]
+  }
+  else {
+    prev_congruency[i] = 0
+  }
+}
+
+prev_analysis <- exclusions_all_data %>%
+  mutate(prev_congruency = prev_congruency) %>%
+  filter(prev_congruency != 0, corr_response == 1) %>%
+  group_by(subject,congruency,prev_congruency) %>%
+  summarise(mean_reaction = mean(RT))
+
+prev_analysis <- prev_analysis %>%
+  group_by(congruency,prev_congruency) %>%
+  summarise(mean_react = mean(mean_reaction),
+            standard_error = sd(mean_reaction)/(sqrt(length(mean_reaction))))
+
+knitr::kable(prev_analysis)
 
 ```
 
