@@ -144,9 +144,6 @@ It is common to exclude Reaction times that are very slow. There are many method
                        filter(congruency == 'I') %>%
                        group_by(subject)
     
-
-    #avgRT_sub = mean(abs(RT_incongruency$corr_RT - RT_congruency$corr_RT))
-    
     
     SEMRT_sub = sd(RT_incongruency$corr_RT - RT_congruency$corr_RT)/sqrt(length(RT_congruency$corr_RT))
     
@@ -195,17 +192,30 @@ for (i in 2:length(exclusions_all_data$subject)) {
 }
 
 prev_analysis <- exclusions_all_data %>%
+    #adds n-1 trials column to all RT < 2000
   mutate(prev_congruency = prev_congruency) %>%
+    #keeps n-1 cong/incrog trials with correct responses 
   filter(prev_congruency != 0, corr_response == 1) %>%
   group_by(subject,congruency,prev_congruency) %>%
   summarise(mean_reaction = mean(RT))
 
-prev_analysis <- prev_analysis %>%
+new_analysis <- prev_analysis %>%
   group_by(congruency,prev_congruency) %>%
   summarise(mean_react = mean(mean_reaction),
             standard_error = sd(mean_reaction)/(sqrt(length(mean_reaction))))
 
-knitr::kable(prev_analysis)
+knitr::kable(new_analysis)
+
+    ggplot(new_analysis, aes(x=congruency, y=mean_react, fill=prev_congruency))+
+        geom_bar(stat="identity", width = 0.75, position=position_dodge(width=0.9))+
+        xlab("n-1 congruency")+
+        ylab("Mean Reaction Time")+
+        geom_errorbar(aes(ymin=mean_react-standard_error,
+                          ymax=mean_react+standard_error),
+                          position=position_dodge(width=0.9),
+                          width=.1,
+                          color="black")
+                      
 
 ```
 

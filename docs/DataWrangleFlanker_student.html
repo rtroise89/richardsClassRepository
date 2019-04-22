@@ -999,10 +999,19 @@ for(i in file_names){
                        filter(congruency == &#39;I&#39;) %&gt;%
                        group_by(subject)
     
-    flanker_data &lt;- data.table(subj=c(1,10,11,12,13,14,15,16,17,18,19,2,20,21,22,3,4,5,6,7,8,9),
-                               diff_RT = RT_incongruency$corr_RT - RT_congruency$corr_RT)
-    setorder(flanker_data)
-    plot(flanker_data)</code></pre>
+    
+    SEMRT_sub = sd(RT_incongruency$corr_RT - RT_congruency$corr_RT)/sqrt(length(RT_congruency$corr_RT))
+    
+    avg_RT = mean(abs(RT_incongruency$corr_RT - RT_congruency$corr_RT))
+    
+    flanker_data &lt;- data.table(avg_RT, SEMRT_sub)
+    
+                                
+    ggplot(flanker_data, aes(x=&quot;all_subj&quot;, y=avg_RT))+
+        geom_bar(stat=&quot;identity&quot;)+
+        ylab(&quot;Mean Flanker Effect&quot;)+
+        geom_errorbar(aes(ymin=avg_RT-SEMRT_sub,
+                          ymax=avg_RT+SEMRT_sub))</code></pre>
 <p><img src="DataWrangleFlanker_student_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="exploratory-analysis" class="section level3">
@@ -1018,6 +1027,77 @@ for(i in file_names){
 <li>trial n incongruent : trial n-1 incongruent</li>
 </ol>
 <p>**<a href="tip:**" class="uri">tip:**</a> be careful, note that the first trial in each experiment can not be included, because it had no preceding trial</p>
+<pre class="r"><code>prev_congruency = c()
+
+for (i in 2:length(exclusions_all_data$subject)) {
+  if (exclusions_all_data$subject[i]==exclusions_all_data$subject[i-1]) {
+    prev_congruency[i] = exclusions_all_data$congruency[i-1]
+  }
+  else {
+    prev_congruency[i] = 0
+  }
+}
+
+prev_analysis &lt;- exclusions_all_data %&gt;%
+    #adds n-1 trials column to all RT &lt; 2000
+  mutate(prev_congruency = prev_congruency) %&gt;%
+    #keeps n-1 cong/incrog trials with correct responses 
+  filter(prev_congruency != 0, corr_response == 1) %&gt;%
+  group_by(subject,congruency,prev_congruency) %&gt;%
+  summarise(mean_reaction = mean(RT))
+
+new_analysis &lt;- prev_analysis %&gt;%
+  group_by(congruency,prev_congruency) %&gt;%
+  summarise(mean_react = mean(mean_reaction),
+            standard_error = sd(mean_reaction)/(sqrt(length(mean_reaction))))
+
+knitr::kable(new_analysis)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">congruency</th>
+<th align="left">prev_congruency</th>
+<th align="right">mean_react</th>
+<th align="right">standard_error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">C</td>
+<td align="left">C</td>
+<td align="right">713.3460</td>
+<td align="right">29.27478</td>
+</tr>
+<tr class="even">
+<td align="left">C</td>
+<td align="left">I</td>
+<td align="right">753.8704</td>
+<td align="right">31.18765</td>
+</tr>
+<tr class="odd">
+<td align="left">I</td>
+<td align="left">C</td>
+<td align="right">794.2973</td>
+<td align="right">33.59446</td>
+</tr>
+<tr class="even">
+<td align="left">I</td>
+<td align="left">I</td>
+<td align="right">748.9065</td>
+<td align="right">32.50908</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>    ggplot(new_analysis, aes(x=congruency, y=mean_react, fill=prev_congruency))+
+        geom_bar(stat=&quot;identity&quot;, width = 0.75, position=position_dodge(width=0.9))+
+        xlab(&quot;n-1 congruency&quot;)+
+        ylab(&quot;Mean Reaction Time&quot;)+
+        geom_errorbar(aes(ymin=mean_react-standard_error,
+                          ymax=mean_react+standard_error),
+                          position=position_dodge(width=0.9),
+                          width=.1,
+                          color=&quot;black&quot;)</code></pre>
+<p><img src="DataWrangleFlanker_student_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 </div>
 
