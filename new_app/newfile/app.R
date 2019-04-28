@@ -17,23 +17,27 @@ ui <- fluidPage(
    sidebarLayout(
       sidebarPanel(
       #web elements here
-        selectInput("select_species", label = h3("Select box"), 
-                    choices = unique(starwars$species),
-                    multiple = TRUE,
-                    selected = 1), 
-                    
-        sliderInput("height_range", 
-                    label = h3("Select box"), 
-                    min = min(starwars$height, na.rm=TRUE), 
-                    max = max(starwars$height, na.rm=TRUE), 
-                    value = c(100, 150))
+        selectInput("char_name", label = h3("Select name"),
+                    choices = unique(starwars$name),
+                    selected = NULL)
+
+#        selectInput("select_species", label = h3("Select species"), 
+#                    choices = unique(starwars$species),
+#                    multiple = TRUE,
+#                    selected = 1), 
+#                    
+#        sliderInput("height_range", 
+#                    label = h3("Height Range"), 
+#                    min = min(starwars$height, na.rm=TRUE), 
+#                    max = max(starwars$height, na.rm=TRUE), 
+#                    value = c(100, 150))
       
-      ),
+      ), #sidebar
       
       # Show a plot of the generated distribution
       mainPanel(
          dataTableOutput("sw")
-      )
+      ) #main panel
    )
 )
 
@@ -42,9 +46,9 @@ server <- function(input, output) {
    
    output$sw <- renderDataTable({
      starwars[,1:10] %>%
-       filter(height >= input$height_range[1],
-              height <= input$height_range[2],
-              species %in% input$select_species == TRUE)
+       filter(#height >= input$height_range[1],
+              #height <= input$height_range[2],
+              name %in% input$char_name == TRUE)
    })
 }
 
