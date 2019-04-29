@@ -1,0 +1,68 @@
+---
+title: "Presentation Ninja"
+subtitle: "some subtitle"
+author: "Yihui Xie"
+date: "2016/12/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis] #adjust presentation theme and fonts
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+try something
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+#try something else
+
+##more stuff
+
+---
+class: inverse, center, middle 
+
+next slide
+
+      - bullet point
+    - another bullet
+    
+---
+```{r, echo = FALSE, fig.align='center'}
+#can use fig.height (in pixels, range 2-inf)
+#can use out.height="200px"
+a <- rnorm(10,0,1)
+hist(a)
+```
+---
+#add external image
+
+```{r}
+knitr::include_graphics("cats1.jpeg")
+```
+---
+#columns
+
+.pull-left[
+Some tex
+
+]
+
+.pull-right[
+ahh this looks right
+
+]
+
+---
+SHow this
+
+--
+
+then this
+
+--
+
+then this
