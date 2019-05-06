@@ -1,8 +1,8 @@
 ---
-title: "Presentation Ninja"
-subtitle: "some subtitle"
-author: "Yihui Xie"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+title: "Welcome to the World of TRAJR"
+subtitle: "Animal Trajectory Analysis"
+author: "Richard Troise"
+date: "2019/05/16"
 output:
   xaringan::moon_reader:
     css: [default, metropolis] #adjust presentation theme and fonts
@@ -12,15 +12,36 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
+class: center, middle
+##Why study trajectories of animals?
 
-try something
+--
 
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
+May provide insight on how they utilize path integration.
+
+--
+
+  Ants
+```{r, echo = FALSE, out.height="100px", fig.align='center'}
+knitr::include_graphics("ants1.jpg")
 ```
-#try something else
 
-##more stuff
+
+--
+
+  Crabs
+```{r, echo = FALSE, out.height="100px", fig.align='center'}
+knitr::include_graphics("crab1.jpg")
+```
+
+
+--
+
+  Bees
+```{r, echo = FALSE, out.height="100px", fig.align='center'}
+knitr::include_graphics("bees1.jpg")
+```
+
 
 ---
 class: inverse, center, middle 
@@ -40,8 +61,8 @@ hist(a)
 ---
 #add external image
 
-```{r}
-knitr::include_graphics("cats1.jpeg")
+```{r, echo = FALSE, out.height="200px"}
+knitr::include_graphics("ants1.jpg")
 ```
 ---
 #columns
