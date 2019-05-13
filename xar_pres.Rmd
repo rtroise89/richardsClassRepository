@@ -1,5 +1,5 @@
 ---
-title: "Welcome to the World of TRAJR"
+title: "Track Your Animals with TRAJR"
 subtitle: "Animal Trajectory Analysis"
 author: "Richard Troise"
 date: "2019/05/16"
