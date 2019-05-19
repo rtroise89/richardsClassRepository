@@ -112,6 +112,18 @@ traj <- TrajFromCoords(coords)
 traj
 ```
 ---
+#Plotting trajectories
+##Cartesian coordinates
+```{r, echo=FALSE, out.height="350px", fig.align='center'}
+plot(traj$y~traj$x)
+```
+---
+#Plotting trajectories
+##polar coordintes
+```{r, echo=FALSE, out.height="350px", fig.align='center'}
+plot(traj$polar~traj$time)
+```
+---
 ##Let's do something useful: Characterize the data
 ```{r}
 characteriseTrajectory <- function(trj) {
