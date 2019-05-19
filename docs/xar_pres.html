@@ -14,7 +14,7 @@ class: center, middle, inverse, title-slide
 # Track Your Animals with TRAJR
 ## Animal Trajectory Analysis
 ### Richard Troise
-### 2019/05/16
+### 2019/05/20
 
 ---
 
@@ -1323,10 +1323,19 @@ traj
 ---
 #Plotting trajectories
 ##Cartesian coordinates
+
+```r
+plot(traj$y~traj$x)
+```
+
 &lt;img src="xar_pres_files/figure-html/unnamed-chunk-11-1.png" height="350px" style="display: block; margin: auto;" /&gt;
 ---
 #Plotting trajectories
 ##polar coordintes
+
+```r
+plot(traj$polar~traj$time)
+```
 
 ```
 ## Warning in xy.coords(x, y, xlabel, ylabel, log): imaginary parts discarded

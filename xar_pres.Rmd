@@ -2,7 +2,7 @@
 title: "Track Your Animals with TRAJR"
 subtitle: "Animal Trajectory Analysis"
 author: "Richard Troise"
-date: "2019/05/16"
+date: "2019/05/20"
 output:
   xaringan::moon_reader:
     css: [default, metropolis] #adjust presentation theme and fonts
@@ -114,13 +114,13 @@ traj
 ---
 #Plotting trajectories
 ##Cartesian coordinates
-```{r, echo=FALSE, out.height="350px", fig.align='center'}
+```{r, out.height="350px", fig.align='center'}
 plot(traj$y~traj$x)
 ```
 ---
 #Plotting trajectories
 ##polar coordintes
-```{r, echo=FALSE, out.height="350px", fig.align='center'}
+```{r, out.height="350px", fig.align='center'}
 plot(traj$polar~traj$time)
 ```
 ---
