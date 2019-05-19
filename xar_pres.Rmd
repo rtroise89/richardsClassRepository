@@ -77,7 +77,7 @@ Here are some functions:
 
 --
 ```{r, echo=FALSE, fig.align='center', out.height="350px"}
-knitr::include_graphics("function_pic.jpg")
+knitr::include_graphics("function_pic.JPG")
 ```
 
 ---
@@ -91,7 +91,7 @@ Read from a csv file
 --
 ```{r, fig.align='center', out.height="250px"}
 library(trajr)
-knitr::include_graphics("coords1.jpg")
+knitr::include_graphics("coords1.JPG")
 
 ```
 
