@@ -8,8 +8,8 @@ navbar:
       href: R_Basics.html
     - text: "Links"
       href: Links.html
-    - text: "Dictionary"
-      href: Definitions.html
+#    - text: "Dictionary"
+#      href: Definitions.html
     - text: "DataVis"
       href: DataVis.html
     - text: "DataWrangle_Richard"
