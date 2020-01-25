@@ -17,9 +17,9 @@ output: html_document
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
 
-# **Richard T's WebSite**
+# **Richard T's Project Portfolio in R**
 
-This is a template example for lab journaling. Students in Matt Crump's Human Cognition and Performance Lab will use this template to learn R, and other things. Students can replace this text with more fun things. People not in my lab can use this too.
+As an aspiring data scientist, this portfolio will demonstrate an understanding of the basics and challenges using R. A shout out goes to Professor Matt Crump of Brooklyn College for the webpage template, along with the lectures necessary for my progress thus far.
 
 
 </div>

@@ -17,5 +17,7 @@ navbar:
     - text: "Statistics"
       href: Statistics.html
     - text: "Final"
-      href: Final_Presentation.html      
+      href: Final_Presentation.html
+    - text: "DataInc_Capstone"
+      href: DataInc_Capstone.html    
 output_dir: "docs"
