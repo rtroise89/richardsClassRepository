@@ -28,23 +28,23 @@ May provide insight on how they utilize path integration and social learning.
 --
 
   Ants
-&lt;img src="ants1.jpg" height="100px" style="display: block; margin: auto;" /&gt;
+&lt;img src="ants1.jpg" width="2475" height="100px" style="display: block; margin: auto;" /&gt;
 
 
 --
 
   Crabs
-&lt;img src="crab1.jpg" height="100px" style="display: block; margin: auto;" /&gt;
+&lt;img src="crab1.jpg" width="1200" height="100px" style="display: block; margin: auto;" /&gt;
 
 
 --
 
   Bees
-&lt;img src="bees1.jpg" height="100px" style="display: block; margin: auto;" /&gt;
+&lt;img src="bees1.jpg" width="1600" height="100px" style="display: block; margin: auto;" /&gt;
 
 
 ---
-&lt;img src="traj_example.png" height="350px" style="display: block; margin: auto;" /&gt;
+&lt;img src="traj_example.png" width="768" height="350px" style="display: block; margin: auto;" /&gt;
 A correlated random walk with 5 steps. The direction of step i is the direction of step (i−1)+Δi.
 
 What is a trajectory:
@@ -84,7 +84,7 @@ plot(trj)
 Here are some functions:
 
 --
-&lt;img src="function_pic.JPG" height="350px" style="display: block; margin: auto;" /&gt;
+&lt;img src="function_pic.JPG" width="935" height="350px" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -101,7 +101,7 @@ library(trajr)
 knitr::include_graphics("coords1.JPG")
 ```
 
-&lt;img src="coords1.JPG" height="250px" style="display: block; margin: auto;" /&gt;
+&lt;img src="coords1.JPG" width="769" height="250px" style="display: block; margin: auto;" /&gt;
 
 ---
 ##Use CSV files 
@@ -1338,8 +1338,8 @@ plot(traj$polar~traj$time)
 ```
 
 ```
-## Warning in xy.coords(x, y, xlabel, ylabel, log): imaginary parts discarded
-## in coercion
+## Warning in xy.coords(x, y, xlabel, ylabel, log): imaginary parts discarded in
+## coercion
 ```
 
 &lt;img src="xar_pres_files/figure-html/unnamed-chunk-12-1.png" height="350px" style="display: block; margin: auto;" /&gt;
@@ -1446,7 +1446,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

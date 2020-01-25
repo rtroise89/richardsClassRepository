@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -83,7 +83,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -232,6 +231,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -243,18 +243,6 @@ $(document).ready(function () {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -338,13 +326,6 @@ $(document).ready(function () {
 <div class="col-sm-6">
 <h1 id="richard-ts-website"><strong>Richard T’s WebSite</strong></h1>
 <p>This is a template example for lab journaling. Students in Matt Crump’s Human Cognition and Performance Lab will use this template to learn R, and other things. Students can replace this text with more fun things. People not in my lab can use this too.</p>
-<h2 id="how-to-use">How to use</h2>
-<ol style="list-style-type: decimal">
-<li><p>fork the repo for this website and follow instructions on read me to get set up. <a href="https://github.com/CrumpLab/LabJournalWebsite" class="uri">https://github.com/CrumpLab/LabJournalWebsite</a></p></li>
-<li><p>Blog/journal what you are doing in R, by editing the Journal.Rmd. See the <a href="https://crumplab.github.io/LabJournalWebsite/Journal.html">Journal page</a> for an example of what to do to get started learning R.</p></li>
-<li><p>See the <a href="https://crumplab.github.io/LabJournalWebsite/Links.html">links page</a> for lots of helpful links on learning R.</p></li>
-<li><p>Change everything to make it your own.</p></li>
-</ol>
 </div>
 <div class="col-sm-6">
 <h3 id="crump-lab-human-cognition-and-performance"><a href="https://crumplab.github.io">Crump Lab: Human Cognition and Performance</a></h3>
@@ -368,6 +349,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
