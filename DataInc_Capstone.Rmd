@@ -13,6 +13,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
    ##TEST
 ```
