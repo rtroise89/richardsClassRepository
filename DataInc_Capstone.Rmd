@@ -10,9 +10,60 @@ output:
     #code_folding: hide
 ---
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 ```
 
-```{r, echo=TRUE}
-   ##TEST
+# 1.Summary graphs of Average Scores
+
+```{r, echo=FALSE}
+library(dplyr)
+library(readr)
+Survey_rescored_data_v2 <- read_csv("Survey_rescored_data_v2.csv")
+View(Survey_rescored_data_v2)
+all_data = Survey_rescored_data_v2
+
+data_gender <- all_data %>%
+            filter(Framing != "Neutral") %>%
+            filter(Gender != "other") %>%
+            group_by(Framing, Gender) %>%
+            summarise(Avg_Score = mean(na.omit(Score)))
+            
+knitr::kable(data_gender)
 ```
+
+```{r, echo=FALSE}
+data_edu <- all_data %>%
+            filter(Framing != "Neutral") %>%
+            filter(Grade != "OT") %>%
+            filter(Grade != "PG") %>%
+            group_by(Framing, Grade) %>%
+            summarise(Avg_Score = mean(na.omit(Score)))
+
+knitr::kable(data_edu)
+```
+
+# 2. Main Effects and Interaction of Gender and Goal Framing
+
+```{r, echo=FALSE}
+gender = data_gender$Gender
+framing = data_gender$Framing
+score = data_gender$Avg_Score
+interaction.plot(gender,framing,score,
+                 leg.bty = "o",
+                 main = "Gender and Goal Framing (Positve or Negative)",
+                 xlab = "Gender (Female or Male)",
+                 ylab = "Average of Self-reported Completion Scores")
+```
+
+# 3.Main Effects and Interaction of Education Level and Goal Framing
+
+```{r, echo=FALSE}
+education = data_edu$Grade
+score = data_edu$Avg_Score
+interaction.plot(education,framing,score,
+                 leg.bty = "o",
+                 main = "Education Level and Goal Framing (Positve or Negative)",
+                 xlab = "Grade (High School or Undergrad)",
+                 ylab = "Average of Self-reported Completion Scores")
+```
+
