@@ -67,3 +67,14 @@ interaction.plot(education,framing,score,
                  ylab = "Average of Self-reported Completion Scores")
 ```
 
+# 4.Principal Component Analysis
+
+```{r, out.height="100px"}
+library(InPosition)
+library(readr)
+Edu_behavior_profile <- read_csv("Edu_behavior_profile.csv")
+data_tab <- Edu_behavior_profile[,-1]
+inGraphs(epCA.inference.battery(DATA = data_tab,symmetric = FALSE), biplots = TRUE)
+knitr::include_graphics("Correspond_Simplex.jpg")
+```
+
