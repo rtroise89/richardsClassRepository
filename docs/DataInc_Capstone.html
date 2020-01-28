@@ -490,7 +490,7 @@ interaction.plot(gender,framing,score,
 </div>
 <div id="main-effects-and-interaction-of-education-level-and-goal-framing" class="section level1">
 <h1>3. Main Effects and Interaction of Education Level and Goal Framing</h1>
-<p><strong>There is an interaction effect which suggests when a goal is framed negatively, the odds of success are better at higher grade levels.</strong></p>
+<p><strong>There is an interaction effect which suggests when a goal is framed negatively, the frequency of success are better at higher grade levels.</strong></p>
 <pre class="r"><code>education = data_edu$Grade
 score = data_edu$Avg_Score
 interaction.plot(education,framing,score,
@@ -503,13 +503,13 @@ interaction.plot(education,framing,score,
 <div id="reference-1" class="section level1">
 <h1>Reference 1</h1>
 <p><strong>Dontre, Alexander. (2018). To Frame or Not to Frame - Improving Goal Setting</strong></p>
-<p>Data sourced from <a href="https://osf.io/5m2g8/" class="uri">https://osf.io/5m2g8/</a></p>
+<p>Data obtained from <a href="https://osf.io/5m2g8/" class="uri">https://osf.io/5m2g8/</a></p>
 </div>
-<div id="components-analysis-for-behavioral-profile" class="section level1">
-<h1>4. Components Analysis for Behavioral Profile</h1>
+<div id="making-the-behavioral-profile" class="section level1">
+<h1>4. Making the Behavioral Profile</h1>
 <p><strong>Data based on studies by Amrieh(2015) and Amrieh(2016)</strong></p>
-<p><strong>Pdf of Results in 2nd Link Asset</strong></p>
-<p><strong>The Simplex identifies that students in IT and French vary the most in their behavioral profile. Students in IT tend to have more discussion in class while students in French tend to use more of their school resources</strong></p>
+<p>Pdf of Behavioral Profile <a href="https://github.com/rtroise89/richardsClassRepository/blob/master/Behavioral_simplex.pdf" class="uri">https://github.com/rtroise89/richardsClassRepository/blob/master/Behavioral_simplex.pdf</a></p>
+<p><strong>The Simplex is based on Correspondence Analysis (Abdi, 2010; Beaton 2014). The plot identifies that students in IT and French vary differently in their behavioral profiles compared to all other courses. Students in IT tend to have more discussion in class while students in French tend to use more of their school resources</strong></p>
 <pre class="r"><code>library(InPosition)
 library(prettyGraphs)
 data &lt;- read.csv(&quot;Edu_behavior_profile.csv&quot;,header=TRUE)
@@ -547,7 +547,7 @@ prettyPlot(rows.score,x_axis=1,y_axis=2,col=&quot;Red&quot;,pch=NULL,cex=1,
 </div>
 <div id="reference-2" class="section level1">
 <h1>Reference 2</h1>
-<p>Data sourced from <a href="https://www.kaggle.com/aljarah/xAPI-Edu-Data" class="uri">https://www.kaggle.com/aljarah/xAPI-Edu-Data</a></p>
+<p>Data obtained from <a href="https://www.kaggle.com/aljarah/xAPI-Edu-Data" class="uri">https://www.kaggle.com/aljarah/xAPI-Edu-Data</a></p>
 <p><strong>Abdi, H. &amp; Williams, L.J. (2010). Correspondence analysis. In N.J. Salkind, D.M., Dougherty, &amp; B. Frey (Eds.): Encyclopedia of Research Design. Thousand Oaks (CA): Sage. pp. 267-278.</strong></p>
 <p><strong>Amrieh, E. A., Hamtini, T., &amp; Aljarah, I. (2016). Mining Educational Data to Predict Student’s academic Performance using Ensemble Methods. International Journal of Database Theory and Application, 9(8), 119-136.</strong></p>
 <p><strong>Amrieh, E. A., Hamtini, T., &amp; Aljarah, I. (2015). Preprocessing and analyzing educational data set using X-API for improving student’s performance. In Applied Electrical Engineering and Computing Technologies (AEECT), 2015 IEEE Jordan Conference on (pp. 1-5). IEEE.</strong></p>

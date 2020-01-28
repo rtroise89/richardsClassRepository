@@ -73,14 +73,14 @@ interaction.plot(education,framing,score,
 # Reference 1
 **Dontre, Alexander. (2018). To Frame or Not to Frame - Improving Goal Setting**
 
-Data sourced from https://osf.io/5m2g8/
+Data obtained from https://osf.io/5m2g8/
 
-# 4. Components Analysis for Behavioral Profile
+# 4. Making the Behavioral Profile
 **Data based on studies by Amrieh(2015) and Amrieh(2016)**
 
-**Pdf of Results in 2nd Link Asset**
+Pdf of Behavioral Profile https://github.com/rtroise89/richardsClassRepository/blob/master/Behavioral_simplex.pdf
 
-**The Simplex identifies that students in IT and French vary the most in their behavioral profile. Students in IT tend to have more discussion in class while students in French tend to use more of their school resources** 
+**The Simplex is based on Correspondence Analysis (Abdi, 2010; Beaton 2014). The plot identifies that students in IT and French vary differently in their behavioral profiles compared to all other courses. Students in IT tend to have more discussion in class while students in French tend to use more of their school resources** 
 
 ```{r, eval=FALSE}
 library(InPosition)
@@ -120,7 +120,7 @@ prettyPlot(rows.score,x_axis=1,y_axis=2,col="Red",pch=NULL,cex=1,
 ```
 
 # Reference 2
-Data sourced from https://www.kaggle.com/aljarah/xAPI-Edu-Data
+Data obtained from https://www.kaggle.com/aljarah/xAPI-Edu-Data
 
 **Abdi, H. & Williams, L.J. (2010). Correspondence analysis. In N.J. Salkind, D.M., Dougherty, & B. Frey (Eds.): Encyclopedia of Research Design. Thousand Oaks (CA): Sage. pp. 267-278.** 
 
