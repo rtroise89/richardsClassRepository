@@ -69,12 +69,13 @@ interaction.plot(education,framing,score,
 
 # 4.Principal Component Analysis
 
-```{r, out.height="100px"}
+```{r}
 library(InPosition)
 library(readr)
+library(imager)
 Edu_behavior_profile <- read_csv("Edu_behavior_profile.csv")
 data_tab <- Edu_behavior_profile[,-1]
 inGraphs(epCA.inference.battery(DATA = data_tab,symmetric = FALSE), biplots = TRUE)
-knitr::include_graphics("Correspond_Simplex.jpg")
+plot(load.image("Correspond_Simplex.bmp"), axes=FALSE)
 ```
 

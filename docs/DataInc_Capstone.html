@@ -465,14 +465,14 @@ div.tocify {
 <h1>4.Principal Component Analysis</h1>
 <pre class="r"><code>library(InPosition)
 library(readr)
+library(imager)
 Edu_behavior_profile &lt;- read_csv(&quot;Edu_behavior_profile.csv&quot;)
 data_tab &lt;- Edu_behavior_profile[,-1]
 inGraphs(epCA.inference.battery(DATA = data_tab,symmetric = FALSE), biplots = TRUE)</code></pre>
-<pre><code>## [1] &quot;It is estimated that your iterations will take 0.1 minutes.&quot;
+<pre><code>## [1] &quot;It is estimated that your iterations will take 0.08 minutes.&quot;
 ## [1] &quot;R is not in interactive() mode. Resample-based tests will be conducted. Please take note of the progress bar.&quot;
 ## ================================================================================</code></pre>
-<pre class="r"><code>knitr::include_graphics(&quot;Correspond_Simplex.jpg&quot;)</code></pre>
-<p><img src="Correspond_Simplex.jpg" height="100px" /></p>
+<pre class="r"><code>plot(load.image(&quot;Correspond_Simplex.bmp&quot;), axes=FALSE)</code></pre>
 </div>
 
 
