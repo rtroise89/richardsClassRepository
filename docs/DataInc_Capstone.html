@@ -388,8 +388,22 @@ div.tocify {
 </div>
 
 
-<div id="summary-graphs-of-average-scores" class="section level1">
-<h1>1.Summary graphs of Average Scores</h1>
+<div id="summary-of-average-self-reported-success-scores" class="section level1">
+<h1>1.Summary of Average Self-reported Success Scores</h1>
+<p><strong>Data is from a study by Dontre (2018)</strong></p>
+<pre class="r"><code>library(dplyr)
+library(readr)
+Survey_rescored_data_v2 &lt;- read_csv(&quot;Survey_rescored_data_v2.csv&quot;)
+View(Survey_rescored_data_v2)
+all_data = Survey_rescored_data_v2
+
+data_gender &lt;- all_data %&gt;%
+            filter(Framing != &quot;Neutral&quot;) %&gt;%
+            filter(Gender != &quot;other&quot;) %&gt;%
+            group_by(Framing, Gender) %&gt;%
+            summarise(Avg_Score = mean(na.omit(Score)))
+            
+knitr::kable(data_gender)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -400,27 +414,35 @@ div.tocify {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">N</td>
-<td align="left">F</td>
+<td align="left">Negative</td>
+<td align="left">Female</td>
 <td align="right">45.31579</td>
 </tr>
 <tr class="even">
-<td align="left">N</td>
-<td align="left">M</td>
+<td align="left">Negative</td>
+<td align="left">Male</td>
 <td align="right">52.11905</td>
 </tr>
 <tr class="odd">
-<td align="left">P</td>
-<td align="left">F</td>
+<td align="left">Positive</td>
+<td align="left">Female</td>
 <td align="right">60.92537</td>
 </tr>
 <tr class="even">
-<td align="left">P</td>
-<td align="left">M</td>
+<td align="left">Positive</td>
+<td align="left">Male</td>
 <td align="right">59.22222</td>
 </tr>
 </tbody>
 </table>
+<pre class="r"><code>data_edu &lt;- all_data %&gt;%
+            filter(Framing != &quot;Neutral&quot;) %&gt;%
+            filter(Grade != &quot;OT&quot;) %&gt;%
+            filter(Grade != &quot;PG&quot;) %&gt;%
+            group_by(Framing, Grade) %&gt;%
+            summarise(Avg_Score = mean(na.omit(Score)))
+
+knitr::kable(data_edu)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -431,22 +453,22 @@ div.tocify {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">N</td>
+<td align="left">Negative</td>
 <td align="left">HS</td>
 <td align="right">47.44444</td>
 </tr>
 <tr class="even">
-<td align="left">N</td>
+<td align="left">Negative</td>
 <td align="left">UG</td>
 <td align="right">55.37838</td>
 </tr>
 <tr class="odd">
-<td align="left">P</td>
+<td align="left">Positive</td>
 <td align="left">HS</td>
 <td align="right">59.11364</td>
 </tr>
 <tr class="even">
-<td align="left">P</td>
+<td align="left">Positive</td>
 <td align="left">UG</td>
 <td align="right">59.13084</td>
 </tr>
@@ -455,24 +477,81 @@ div.tocify {
 </div>
 <div id="main-effects-and-interaction-of-gender-and-goal-framing" class="section level1">
 <h1>2. Main Effects and Interaction of Gender and Goal Framing</h1>
+<p><strong>There is an interaction effect that show male and females report goal success in opposite directions depending on their goal expectations.</strong></p>
+<pre class="r"><code>gender = data_gender$Gender
+framing = data_gender$Framing
+score = data_gender$Avg_Score
+interaction.plot(gender,framing,score,
+                 leg.bty = &quot;o&quot;,
+                 main = &quot;Gender and Goal Framing&quot;,
+                 xlab = &quot;Gender&quot;,
+                 ylab = &quot;Average of Self-reported Completion Scores&quot;)</code></pre>
 <p><img src="DataInc_Capstone_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="main-effects-and-interaction-of-education-level-and-goal-framing" class="section level1">
-<h1>3.Main Effects and Interaction of Education Level and Goal Framing</h1>
+<h1>3. Main Effects and Interaction of Education Level and Goal Framing</h1>
+<p><strong>There is an interaction effect which suggests when a goal is framed negatively, the odds of success are better at higher grade levels.</strong></p>
+<pre class="r"><code>education = data_edu$Grade
+score = data_edu$Avg_Score
+interaction.plot(education,framing,score,
+                 leg.bty = &quot;o&quot;,
+                 main = &quot;Education Level and Goal Framing&quot;,
+                 xlab = &quot;Grade (High School or Undergrad)&quot;,
+                 ylab = &quot;Average of Self-reported Completion Scores&quot;)</code></pre>
 <p><img src="DataInc_Capstone_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
-<div id="principal-component-analysis" class="section level1">
-<h1>4.Principal Component Analysis</h1>
+<div id="reference-1" class="section level1">
+<h1>Reference 1</h1>
+<p><strong>Dontre, Alexander. (2018). To Frame or Not to Frame - Improving Goal Setting</strong></p>
+<p>Data sourced from <a href="https://osf.io/5m2g8/" class="uri">https://osf.io/5m2g8/</a></p>
+</div>
+<div id="components-analysis-for-behavioral-profile" class="section level1">
+<h1>4. Components Analysis for Behavioral Profile</h1>
+<p><strong>Data based on studies by Amrieh(2015) and Amrieh(2016)</strong></p>
+<p><strong>Pdf of Results in 2nd Link Asset</strong></p>
+<p><strong>The Simplex identifies that students in IT and French vary the most in their behavioral profile. Students in IT tend to have more discussion in class while students in French tend to use more of their school resources</strong></p>
 <pre class="r"><code>library(InPosition)
-library(readr)
-library(imager)
-Edu_behavior_profile &lt;- read_csv(&quot;Edu_behavior_profile.csv&quot;)
-data_tab &lt;- Edu_behavior_profile[,-1]
-inGraphs(epCA.inference.battery(DATA = data_tab,symmetric = FALSE), biplots = TRUE)</code></pre>
-<pre><code>## [1] &quot;It is estimated that your iterations will take 0.08 minutes.&quot;
-## [1] &quot;R is not in interactive() mode. Resample-based tests will be conducted. Please take note of the progress bar.&quot;
-## ================================================================================</code></pre>
-<pre class="r"><code>plot(load.image(&quot;Correspond_Simplex.bmp&quot;), axes=FALSE)</code></pre>
+library(prettyGraphs)
+data &lt;- read.csv(&quot;Edu_behavior_profile.csv&quot;,header=TRUE)
+rownames(data)&lt;- data[,1]
+data &lt;- data[,-1]
+res = epCA.inference.battery(DATA = data,symmetric = FALSE)
+
+# Coordinates
+
+rows.score = res$Fixed.Data$ExPosition.Data$fi
+rows.cont = res$Fixed.Data$ExPosition.Data$ci
+rownames(rows.score) = rownames(data)
+
+cols.score = res$Fixed.Data$ExPosition.Data$fj
+cols.cont = res$Fixed.Data$ExPosition.Data$cj
+rownames(cols.score) = colnames(data)
+
+
+prettyPlot(cols.score,x_axis=1,y_axis=2,col=NULL,pch=NULL,cex=NULL,text.cex=0.4,
+           pos=3,xlab=&quot;&quot;,ylab=&quot;&quot;,
+           main=&quot;Simplex Behavioral Profile vs. Class Topic&quot;,display_names=TRUE,display_points=TRUE,
+           constraints=NULL,contributionCircles=TRUE,contributions=cols.cont,axes=TRUE,
+           fg.line.width=3,fg.type=&quot;l&quot;,fg.col=&quot;black&quot;,
+           bg.line.width=1.5,bg.lty=3,bg.col=&quot;black&quot;,
+           flip=FALSE,asp=1,findBounds=TRUE,dev.new=TRUE,new.plot=TRUE)
+
+prettyPlot(rows.score,x_axis=1,y_axis=2,col=&quot;Red&quot;,pch=NULL,cex=1,
+           text.cex=c(.3,.3,.3,.3,1,.3,.3,1,.3,.3,.3,.3),
+           pos=3,xlab=&quot;&quot;,ylab=&quot;&quot;,
+           main=&quot;Simplex Behavioral Profile vs. Class Topic&quot;,display_names=TRUE,display_points=TRUE,
+           constraints=NULL,contributionCircles=TRUE,contributions=rows.cont,axes=TRUE,
+           fg.line.width=3,fg.type=&quot;l&quot;,fg.col=&quot;black&quot;,
+           bg.line.width=1.5,bg.lty=3,bg.col=&quot;black&quot;,
+           flip=FALSE,asp=1,findBounds=TRUE,dev.new=FALSE,new.plot=FALSE)</code></pre>
+</div>
+<div id="reference-2" class="section level1">
+<h1>Reference 2</h1>
+<p>Data sourced from <a href="https://www.kaggle.com/aljarah/xAPI-Edu-Data" class="uri">https://www.kaggle.com/aljarah/xAPI-Edu-Data</a></p>
+<p><strong>Abdi, H. &amp; Williams, L.J. (2010). Correspondence analysis. In N.J. Salkind, D.M., Dougherty, &amp; B. Frey (Eds.): Encyclopedia of Research Design. Thousand Oaks (CA): Sage. pp. 267-278.</strong></p>
+<p><strong>Amrieh, E. A., Hamtini, T., &amp; Aljarah, I. (2016). Mining Educational Data to Predict Student’s academic Performance using Ensemble Methods. International Journal of Database Theory and Application, 9(8), 119-136.</strong></p>
+<p><strong>Amrieh, E. A., Hamtini, T., &amp; Aljarah, I. (2015). Preprocessing and analyzing educational data set using X-API for improving student’s performance. In Applied Electrical Engineering and Computing Technologies (AEECT), 2015 IEEE Jordan Conference on (pp. 1-5). IEEE.</strong></p>
+<p><strong>Beaton, D., Chin Fatt C.R., &amp; Abdi, H. (2014). An ExPosition of multivariate analysis with the Singular Value Decomposition in R. Computational Statistics &amp; Data Analysis, 72, 176-189.</strong></p>
 </div>
 
 
