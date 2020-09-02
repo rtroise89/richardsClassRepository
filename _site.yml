@@ -4,20 +4,22 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "R Basics"
-      href: R_Basics.html
+#    - text: "R Basics"
+#      href: R_Basics.html
     - text: "Links"
       href: Links.html
 #    - text: "Dictionary"
 #      href: Definitions.html
+    - text: "Reducing_Implicit_Bias"
+      href: Reducing_Implicit_Bias.html
     - text: "DataVis"
       href: DataVis.html
     - text: "DataWrangle_Richard"
       href: DataWrangleFlanker_student.html
-    - text: "Statistics"
-      href: Statistics.html
+#    - text: "Statistics"
+#      href: Statistics.html
     - text: "Final"
       href: Final_Presentation.html
-    - text: "DataInc_Capstone"
-      href: DataInc_Capstone.html    
+    - text: "Goal_Success"
+      href: Goal_Success.html    
 output_dir: "docs"

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Track Your Animals with TRAJR</title>
     <meta charset="utf-8" />
@@ -28,19 +28,19 @@ May provide insight on how they utilize path integration and social learning.
 --
 
   Ants
-&lt;img src="ants1.jpg" width="2475" height="100px" style="display: block; margin: auto;" /&gt;
+&lt;img src="ants1.jpg" height="100px" style="display: block; margin: auto;" /&gt;
 
 
 --
 
   Crabs
-&lt;img src="crab1.jpg" width="1200" height="100px" style="display: block; margin: auto;" /&gt;
+&lt;img src="crab1.jpg" height="100px" style="display: block; margin: auto;" /&gt;
 
 
 --
 
   Bees
-&lt;img src="bees1.jpg" width="1600" height="100px" style="display: block; margin: auto;" /&gt;
+&lt;img src="bees1.jpg" height="100px" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -59,7 +59,7 @@ library(trajr)
 ```
 
 ```
-## Warning: package 'trajr' was built under R version 3.5.3
+## Warning: package 'trajr' was built under R version 4.0.2
 ```
 
 ```r
@@ -84,7 +84,7 @@ plot(trj)
 Here are some functions:
 
 --
-&lt;img src="function_pic.JPG" width="935" height="350px" style="display: block; margin: auto;" /&gt;
+&lt;img src="function_pic.JPG" height="350px" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -101,7 +101,7 @@ library(trajr)
 knitr::include_graphics("coords1.JPG")
 ```
 
-&lt;img src="coords1.JPG" width="769" height="250px" style="display: block; margin: auto;" /&gt;
+&lt;img src="coords1.JPG" height="250px" style="display: block; margin: auto;" /&gt;
 
 ---
 ##Use CSV files 
@@ -1444,6 +1444,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -1461,17 +1487,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {
